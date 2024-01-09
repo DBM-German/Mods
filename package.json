@@ -1,0 +1,27 @@
+{
+  "name": "dbm-german-mods",
+  "version": "0.1.0",
+  "description": "Modifications for Discord Bot Maker by the DBM German community.",
+  "author": "DBM German",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DBM-German/Mods/issues"
+  },
+  "homepage": "https://github.com/DBM-German/Mods#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DBM-German/Mods.git"
+  },
+  "keywords": [
+    "discord-bot-maker",
+    "dbm",
+    "german",
+    "discord",
+    "mods"
+  ],
+  "private": true,
+  "type": "commonjs",
+  "devDependencies": {
+    "dbm-types": "^0.1.0"
+  }
+}
