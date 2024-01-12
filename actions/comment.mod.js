@@ -46,7 +46,7 @@ module.exports = {
         </div>
         <div style="flex: 1 auto">
             <label for="color" class="dbminputlabel">Color</label><br>
-            <input id="color" class="round color-picker" type="color" value="#cccccc"><br>
+            <input id="color" class="round color-picker" type="color" value="#e0e1e2"><br>
         </div>
     </div>
     <div class="item-container" style="padding-top: 8px">
