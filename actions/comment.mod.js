@@ -6,7 +6,7 @@ module.exports = {
     displayName: "Comment",
     section: "Other Stuff",
 
-    subtitle(data, presets) {
+    subtitle(data, _presets) {
         return `
 <span style="color: ${data.color}; font-weight: ${data.bold ? "bold" : "normal"}; font-style: ${data.italic ? "italic" : "normal"}; text-decoration: ${data.underline ? "underline" : "none"}">
     ${data.shortComment}
@@ -17,7 +17,7 @@ module.exports = {
 
     fields: [ "shortComment", "longComment", "color", "bold", "italic", "underline" ],
 
-    html(isEvent, data) {
+    html(_isEvent, _data) {
         return `
 <style>
 .item-container {

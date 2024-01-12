@@ -6,7 +6,7 @@ module.exports = {
     displayName: "End Action Sequence Recursively",
     section: "Other Stuff",
 
-    subtitle(data, presets) {
+    subtitle(_data, _presets) {
         return "";
     },
 
@@ -14,7 +14,7 @@ module.exports = {
 
     fields: [],
 
-    html(isEvent, data) {
+    html(_isEvent, _data) {
         return `
 The regular End Action Sequence action just ends the current sequence and not parent sequences. When using it in sub-sequences (like with the Action Container action) the parent sequence continues its execution.<br>
 Whereas this action ends the entire sequence recursively, meaning that parent sequences do not continue.<br>
@@ -24,7 +24,7 @@ Whereas this action ends the entire sequence recursively, meaning that parent se
     init() {
     },
 
-    action(cache) {
+    action(_cache) {
         // Neither call `this.callNextAction(cache)` nor `this.endActions(cache)` to prevent callback execution
     }
 };
