@@ -47,11 +47,11 @@ module.exports = {
 <div>
     <div class="item-container" style="padding-top: 8px">
         <div style="flex: 1 100%">
-            <label for="shortComment" class="dbminputlabel">Short Comment</label><br>
-            <input id="shortComment" class="round" type="text" placeholder="Insert short comment here..." maxlength="80"><br>
+            <span class="dbminputlabel">Short Comment</span><br>
+            <input id="shortComment" class="round" type="text" placeholder="Insert short comment here..." maxlength="160"><br>
         </div>
         <div style="flex: 1 auto">
-            <label for="color" class="dbminputlabel">Color</label><br>
+            <span>Color</span><br>
             <input id="color" class="round color-picker" type="color" value="#e0e1e2"><br>
         </div>
     </div>
@@ -67,7 +67,7 @@ module.exports = {
         </div>
     </div>
     <div style="padding-top: 8px">
-        <label for="longComment" class="dbminputlabel">Long Comment</label><br>
+        <span class="dbminputlabel">Long Comment</span><br>
         <textarea id="longComment" rows="8" placeholder="Insert optional long comment here..." resize: none;"></textarea>
     </div>
 </div>
