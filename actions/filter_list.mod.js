@@ -1,6 +1,6 @@
-/** @typedef {import("dbm-types/dbm-2.1").DBMAction} DBMAction */
-/** @typedef {import("dbm-types/dbm-2.1").DBMVarType} DBMVarType */
-/** @typedef {import("dbm-types/dbm-2.1").DBMListType} DBMListType */
+/** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
+/** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
+/** @typedef {import("../types/dbm-2.1").DBMListType} DBMListType */
 
 /** @type {DBMAction} */
 module.exports = {
@@ -19,7 +19,13 @@ module.exports = {
         return [data.varName2, "List"];
     },
 
-    meta: { version: "2.1.7", preciseCheck: false, author: "DBM German", authorUrl: "https://github.com/DBM-German/Mods", downloadUrl: "https://raw.githubusercontent.com/dbm-german/Mods/main/actions/find_item_in_list.mod.js" },
+    meta: {
+        version: "2.1.7",
+        preciseCheck: false,
+        author: "DBM German",
+        authorUrl: "https://github.com/DBM-German/Mods",
+        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename
+    },
 
     fields: ["list", "varName", "comparison", "value", "storage", "varName2"],
 

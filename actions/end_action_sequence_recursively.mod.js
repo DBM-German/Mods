@@ -1,4 +1,4 @@
-/** @typedef {import("dbm-types/dbm-2.1").DBMAction} DBMAction */
+/** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 
 /** @type {DBMAction} */
 module.exports = {
@@ -10,7 +10,13 @@ module.exports = {
         return "";
     },
 
-    meta: { version: "2.1.7", preciseCheck: false, author: "DBM German", authorUrl: "https://github.com/DBM-German/Mods", downloadUrl: "https://raw.githubusercontent.com/dbm-german/Mods/main/actions/end_action_sequence_recursively.mod.js" },
+    meta: {
+        version: "2.1.7",
+        preciseCheck: false,
+        author: "DBM German",
+        authorUrl: "https://github.com/DBM-German/Mods",
+        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename
+    },
 
     fields: [],
 

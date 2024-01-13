@@ -1,4 +1,4 @@
-/** @typedef {import("dbm-types/dbm-2.1").DBMAction} DBMAction */
+/** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 
 /** @type {DBMAction} */
 module.exports = {
@@ -13,7 +13,13 @@ module.exports = {
 </span>`;
     },
 
-    meta: { version: "2.1.7", preciseCheck: false, author: "DBM German", authorUrl: "https://github.com/DBM-German/Mods", downloadUrl: "https://raw.githubusercontent.com/dbm-german/Mods/main/actions/comment.mod.js" },
+    meta: {
+        version: "2.1.7",
+        preciseCheck: false,
+        author: "DBM German",
+        authorUrl: "https://github.com/DBM-German/Mods",
+        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename
+    },
 
     fields: [ "shortComment", "longComment", "color", "bold", "italic", "underline" ],
 
