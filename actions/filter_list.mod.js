@@ -31,51 +31,51 @@ module.exports = {
 
     html(isEvent, data) {
         return `
-<div>
-    <div style="float: left; width: 35%;">
-        Source List:<br>
-        <select id="list" class="round" onchange="glob.listChange(this, 'varNameContainer')">
-            ${data.lists[isEvent ? 1 : 0]}
-        </select>
-    </div>
-    <div id="varNameContainer" style="display: none; float: right; width: 60%;">
-        Variable Name:<br>
-        <input id="varName" class="round" type="text" list="variableList">
-    </div>
-</div>
+        <div>
+            <div style="float: left; width: 35%;">
+                Source List:<br>
+                <select id="list" class="round" onchange="glob.listChange(this, 'varNameContainer')">
+                    ${data.lists[isEvent ? 1 : 0]}
+                </select>
+            </div>
+            <div id="varNameContainer" style="display: none; float: right; width: 60%;">
+                Variable Name:<br>
+                <input id="varName" class="round" type="text" list="variableList">
+            </div>
+        </div>
 
-<br><br><br>
+        <br><br><br>
 
-<div style="padding-top: 8px;">
-	<div style="float: left; width: 35%;">
-		<span class="dbminputlabel">Comparison Type</span><br>
-		<select id="comparison" class="round" onchange="glob.onComparisonChanged(this)">
-			<option value="0">Exists</option>
-			<option value="1" selected>Equals</option>
-			<option value="2">Equals Exactly</option>
-			<option value="3">Less Than</option>
-			<option value="4">Greater Than</option>
-			<option value="5">Includes</option>
-			<option value="6">Matches Regex</option>
-			<option value="7">Starts With</option>
-			<option value="8">Ends With</option>
-			<option value="9">Length Equals</option>
-			<option value="10">Length is Greater Than</option>
-			<option value="11">Length is Less Than</option>
-		</select>
-	</div>
-	<div style="float: right; width: 60%;" id="directValue">
-		<span class="dbminputlabel">Value to Compare to</span><br>
-		<input id="value" class="round" type="text" name="is-eval">
-	</div>
-</div>
+        <div style="padding-top: 8px;">
+            <div style="float: left; width: 35%;">
+                <span class="dbminputlabel">Comparison Type</span><br>
+                <select id="comparison" class="round" onchange="glob.onComparisonChanged(this)">
+                    <option value="0">Exists</option>
+                    <option value="1" selected>Equals</option>
+                    <option value="2">Equals Exactly</option>
+                    <option value="3">Less Than</option>
+                    <option value="4">Greater Than</option>
+                    <option value="5">Includes</option>
+                    <option value="6">Matches Regex</option>
+                    <option value="7">Starts With</option>
+                    <option value="8">Ends With</option>
+                    <option value="9">Length Equals</option>
+                    <option value="10">Length is Greater Than</option>
+                    <option value="11">Length is Less Than</option>
+                </select>
+            </div>
+            <div style="float: right; width: 60%;" id="directValue">
+                <span class="dbminputlabel">Value to Compare to</span><br>
+                <input id="value" class="round" type="text" name="is-eval">
+            </div>
+        </div>
 
-<br><br><br>
+        <br><br><br>
 
-<div style="padding-top: 8px;">
-    <store-in-variable allowNone selectId="storage" variableContainerId="varNameContainer2" variableInputId="varName2"></store-in-variable>
-</div>
-`;
+        <div style="padding-top: 8px;">
+            <store-in-variable allowNone selectId="storage" variableContainerId="varNameContainer2" variableInputId="varName2"></store-in-variable>
+        </div>
+        `;
     },
 
     init() {

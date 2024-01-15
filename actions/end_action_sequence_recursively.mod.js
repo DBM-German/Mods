@@ -22,9 +22,9 @@ module.exports = {
 
     html(_isEvent, _data) {
         return `
-The regular End Action Sequence action just ends the current sequence and not parent sequences. When using it in sub-sequences (like with the Action Container action) the parent sequence continues its execution.<br>
-Whereas this action ends the entire sequence recursively, meaning that parent sequences do not continue.<br>
-`;
+        The regular End Action Sequence action just ends the current sequence and not parent sequences. When using it in sub-sequences (like with the Action Container action) the parent sequence continues its execution.<br>
+        Whereas this action ends the entire sequence recursively, meaning that parent sequences do not continue.<br>
+        `;
     },
 
     init() {
