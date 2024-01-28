@@ -1,3 +1,5 @@
+import type { DBMActionsCache } from "dbm-types/dbm-2.1";
+
 export type * from "dbm-types/dbm-2.1";
 
 declare module "dbm-types/dbm-2.1" {
@@ -29,6 +31,7 @@ declare module "dbm-types/dbm-2.1" {
          * @param command Command name (e.g. install, run, ...)
          * @param args Command arguments
          * @param opts Command options
+         * @returns String or JSON
          * @throws {Error} NPM command failed
          */
         callNPM<optJSON extends boolean>(command: string, args?: readonly string[], opts?: { json?: optJSON, long?: boolean }): optJSON extends true ? any : string;
@@ -49,7 +52,7 @@ declare module "dbm-types/dbm-2.1" {
         }
     }
 
-    export interface DBMActionMetaData {
+    export interface DBMActionMetadata {
         dependencies?: string[];
     }
 }
