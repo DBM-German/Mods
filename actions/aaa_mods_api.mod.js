@@ -31,8 +31,8 @@ module.exports = {
 
     html(_isEvent, _data) {
         return `
-This action provides additional internal functionality to other mods. It has no purpose in a regular action sequence and will just call the next action.
-`;
+        This action provides additional internal functionality to other mods. It has no purpose in a regular action sequence and will just call the next action.
+        `;
     },
 
     init() {
@@ -76,7 +76,7 @@ This action provides additional internal functionality to other mods. It has no 
                 /** @type {Record<string, boolean>} */
                 const packageStates = {};
 
-                for (let packageInfo of packageInfoList) {
+                for (const packageInfo of packageInfoList) {
                     const { organization, packagename, version, tag } = packageInfo.groups ?? {};
                     const name = `${organization ? "@" + organization + "/" : ""}${packagename}`;
 
