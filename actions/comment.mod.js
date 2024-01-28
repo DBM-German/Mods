@@ -8,9 +8,10 @@ module.exports = {
 
     subtitle(data, _presets) {
         return `
-<span style="color: ${data.color}; font-weight: ${data.bold ? "bold" : "normal"}; font-style: ${data.italic ? "italic" : "normal"}; text-decoration: ${data.underline ? "underline" : "none"}">
-    ${data.shortComment}
-</span>`;
+        <span style="color: ${data.color}; font-weight: ${data.bold ? "bold" : "normal"}; font-style: ${data.italic ? "italic" : "normal"}; text-decoration: ${data.underline ? "underline" : "none"}">
+            ${data.shortComment}
+        </span>
+        `;
     },
 
     meta: {
@@ -21,27 +22,27 @@ module.exports = {
         downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename
     },
 
-    fields: [ "shortComment", "longComment", "color", "bold", "italic", "underline" ],
+    fields: ["shortComment", "longComment", "color", "bold", "italic", "underline"],
 
     html(_isEvent, _data) {
         return `
         <style>
-        .item-container {
-            display: flex;
-            justify-content: flex-start;
-            gap: 30px;
-        }
-        .pretty {
-            margin: 0 auto !important;
-        }
-        .color-picker {
-            width: 28px !important;
-            margin: 0 auto !important;
-            padding-left: 2px !important;
-            padding-right: 2px !important;
-            padding-bottom: 0px !important;
-            cursor: pointer;
-        }
+            .item-container {
+                display: flex;
+                justify-content: flex-start;
+                gap: 30px;
+            }
+            .pretty {
+                margin: 0 auto !important;
+            }
+            .color-picker {
+                width: 28px !important;
+                margin: 0 auto !important;
+                padding-left: 2px !important;
+                padding-right: 2px !important;
+                padding-bottom: 0px !important;
+                cursor: pointer;
+            }
         </style>
 
         <div>

@@ -64,7 +64,7 @@ module.exports = {
                     <option value="11">Length is Less Than</option>
                 </select>
             </div>
-            <div style="float: right; width: 60%;" id="directValue">
+            <div style="float: right; width: 60%;" id="valueContainer">
                 <span class="dbminputlabel">Value to Compare to</span><br>
                 <input id="value" class="round" type="text" name="is-eval">
             </div>
@@ -84,7 +84,7 @@ module.exports = {
         glob.listChange(document.getElementById("list"), "varNameContainer");
 
         glob.onComparisonChanged = function(event) {
-            document.getElementById("directValue").style.display = event.value === "0" ? "none" : null;
+            document.getElementById("valueContainer").style.display = event.value === "0" ? "none" : null;
         };
 
         glob.onComparisonChanged(/** @type {HTMLSelectElement} */ (document.getElementById("comparison")));
@@ -108,7 +108,7 @@ module.exports = {
     
                 switch (compare) {
                     case 0:
-                        result = item !== undefined;
+                        result = item !== undefined && item !== null;
                         break;
                     case 1:
                         result = item == value;
@@ -126,32 +126,32 @@ module.exports = {
                         break;
                     case 6:
                         if (typeof item?.match === "function") {
-                            result = Boolean(item.match(new RegExp("^" + value + "$", "i")));
+                            result = item.match(new RegExp("^" + value + "$", "i"));
                         }
                         break;
                     case 7:
                         if (typeof item?.startsWith === "function") {
-                            result = Boolean(item.startsWith(value));
+                            result = item.startsWith(value);
                         }
                         break;
                     case 8:
                         if (typeof item?.endsWith === "function") {
-                            result = Boolean(item.endsWith(value));
+                            result = item.endsWith(value);
                         }
                         break;
                     case 9:
                         if (typeof item?.length === "number") {
-                            result = Boolean(item.length === value);
+                            result = item.length === value;
                         }
                         break;
                     case 10:
                         if (typeof item?.length === "number") {
-                            result = Boolean(item.length > value);
+                            result = item.length > value;
                         }
                         break;
                     case 11:
                         if (typeof item?.length === "number") {
-                            result = Boolean(item.length < value);
+                            result = item.length < value;
                         }
                         break;
                 }
@@ -163,7 +163,6 @@ module.exports = {
         const varName2 = this.evalMessage(data.varName2, cache);
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         this.storeValue(position, storage, varName2, cache);
-
         this.callNextAction(cache);
     }
 };
