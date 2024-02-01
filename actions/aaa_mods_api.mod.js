@@ -139,7 +139,7 @@ module.exports = {
         // Try to install semver for version comparison
         try {
             DBM.Mods.install("semver@7.5");
-        } catch(error) {
+        } catch (error) {
             console.error(error);
             process.exit(1);
         }
