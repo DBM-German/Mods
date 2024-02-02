@@ -62,10 +62,11 @@ module.exports = {
                     <option value="9">Length Equals</option>
                     <option value="10">Length is Greater Than</option>
                     <option value="11">Length is Less Than</option>
+                    <option value="code">Custom Code</option>
                 </select>
             </div>
             <div style="float: right; width: 60%;" id="valueContainer">
-                <span class="dbminputlabel">Value to Compare to</span><br>
+                <span id="valueLabel" class="dbminputlabel"></span><br>
                 <input id="value" class="round" type="text" name="is-eval">
             </div>
         </div>
@@ -85,6 +86,7 @@ module.exports = {
 
         glob.onComparisonChanged = function(event) {
             document.getElementById("valueContainer").style.display = event.value === "0" ? "none" : null;
+            document.getElementById("valueLabel").innerText = event.value === "code" ? "Predicate Function" : "Value to Compare to";
         };
 
         glob.onComparisonChanged(/** @type {HTMLSelectElement} */ (document.getElementById("comparison")));
@@ -94,71 +96,81 @@ module.exports = {
         const data = cache.actions[cache.index];
         const list = await this.getListFromData(data.list, data.varName, cache);
 
-        const compare = parseInt(data.comparison, 10);
-        let value = data.value;
-        if (compare !== 6) value = this.evalIfPossible(value, cache);
+        const comparison = data.comparison;
+        let value;
+
+        if (comparison === "6") {
+            value = data.value;
+        } else if (comparison === "code") {
+            value = this.eval(`(item) => (${data.value || "!!item"})`, cache, true);
+        } else {
+            value = this.evalIfPossible(data.value, cache);
+        }
 
         let result = list.filter(item => {
             let result = false;
 
-            switch (compare) {
-                case 0:
+            switch (comparison) {
+                case "0":
                     result = item !== undefined && item !== null;
                     break;
-                case 1:
+                case "1":
                     result = item == value;
                     break;
-                case 2:
+                case "2":
                     result = item === value;
                     break;
-                case 3:
+                case "3":
                     result = item < value;
                     break;
-                case 4:
+                case "4":
                     result = item > value;
                     break;
-                case 5:
+                case "5":
                     if (typeof item?.includes === "function") {
                         result = item.includes(value);
                     }
                     break;
-                case 6:
+                case "6":
                     if (typeof item?.match === "function") {
                         result = item.match(new RegExp("^" + value + "$", "i"));
                     }
                     break;
-                case 7:
+                case "7":
                     if (typeof item?.startsWith === "function") {
                         result = item.startsWith(value);
                     }
                     break;
-                case 8:
+                case "8":
                     if (typeof item?.endsWith === "function") {
                         result = item.endsWith(value);
                     }
                     break;
-                case 9:
+                case "9":
                     if (typeof item?.length === "number") {
                         result = item.length === value;
                     }
                     break;
-                case 10:
+                case "10":
                     if (typeof item?.length === "number") {
                         result = item.length > value;
                     }
                     break;
-                case 11:
+                case "11":
                     if (typeof item?.length === "number") {
                         result = item.length < value;
                     }
+                    break;
+                case "code":
+                    result = !!value(item);
                     break;
             }
 
             return result;
         });
 
-        const varName2 = this.evalMessage(data.varName2, cache);
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
+        const varName2 = this.evalMessage(data.varName2, cache);
         this.storeValue(result, storage, varName2, cache);
         this.callNextAction(cache);
     }
