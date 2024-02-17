@@ -26,9 +26,9 @@ module.exports = {
         return `
         <retrieve-from-variable dropdownLabel="Source Set" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
-        <br><br><br><br>
+        <br><br><br>
 
-        <div style="padding-top: 10px;">
+        <div style="padding-top: 8px;">
             <div style="float: left; width: 35%;">
                 <span class="dbminputlabel">Comparison Type</span><br>
                 <select id="comparison" class="round" onchange="glob.onComparisonChanged(this)">
@@ -55,7 +55,7 @@ module.exports = {
 
         <br><br><br><br>
 
-        <hr class="subtlebar" style="margin-top: 0px; margin-bottom: 0px;">
+        <hr class="subtlebar">
 
         <br>
 
