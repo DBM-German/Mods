@@ -17,7 +17,8 @@ module.exports = {
         preciseCheck: false,
         author: "DBM German",
         authorUrl: "https://github.com/DBM-German/Mods",
-        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename
+        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename,
+        dependencies: ["sequency@0.20"]
     },
 
     fields: ["storage", "varName", "restore", "itemVarName", "posVarName", "callType", "actions"],
@@ -125,7 +126,7 @@ module.exports = {
                         try {
                             this.storeValue(item, 1, itemVarName, cache);
                             if (posVarName) this.storeValue(++index, 1, posVarName, cache);
-                            this.executeSubActions(subActions, cache, () => resolve());
+                            this.executeSubActions(subActions, cache, resolve);
                         } catch (error) {
                             reject(error);
                         }

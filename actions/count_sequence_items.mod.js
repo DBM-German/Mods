@@ -22,7 +22,8 @@ module.exports = {
         preciseCheck: false,
         author: "DBM German",
         authorUrl: "https://github.com/DBM-German/Mods",
-        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename
+        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename,
+        dependencies: ["sequency@0.20"]
     },
 
     fields: ["storage", "varName", "restore", "predicate", "storage2", "varName2"],

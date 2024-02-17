@@ -1172,7 +1172,7 @@ module.exports = {
                                 await new Promise((resolve, reject) => {
                                     try {
                                         this.storeValue(item, 1, tempVarName, cache);
-                                        this.executeSubActions(subActions, cache, () => resolve());
+                                        this.executeSubActions(subActions, cache, resolve);
                                     } catch (error) {
                                         // Append remaining items to new sequence before re-throwing error so that the next operation has the full sequence again
                                         sequence = sequence.plus(oldSequence);
