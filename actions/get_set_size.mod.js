@@ -17,7 +17,13 @@ module.exports = {
         return [data.varName2, "Number"];
     },
 
-    meta: { version: "2.1.7", preciseCheck: true, author: null, authorUrl: null, downloadUrl: null },
+    meta: {
+        version: "2.1.7",
+        preciseCheck: false,
+        author: "DBM German",
+        authorUrl: "https://github.com/DBM-German/Mods",
+        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename.split(/[\\/]/).pop()
+    },
 
     fields: ["storage", "varName", "storage2", "varName2"],
 

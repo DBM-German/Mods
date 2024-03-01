@@ -99,7 +99,7 @@ module.exports = {
         preciseCheck: false,
         author: "DBM German",
         authorUrl: "https://github.com/DBM-German/Mods",
-        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename,
+        downloadUrl: "https://raw.githubusercontent.com/DBM-German/Mods/main/actions/" + __filename.split(/[\\/]/).pop(),
         dependencies: ["sequency@0.20"]
     },
 
