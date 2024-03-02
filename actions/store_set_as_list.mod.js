@@ -38,9 +38,6 @@ module.exports = {
     },
 
     init() {
-        const { glob, document } = this;
-
-        glob.listChange(document.getElementById("storage"), "varNameContainer");
     },
 
     action(cache) {

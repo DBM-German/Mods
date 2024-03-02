@@ -84,7 +84,6 @@ module.exports = {
     },
 
     init() {
-        // document.querySelectorAll(".tab-content")[1].getBoundingClientRect()
     },
 
     async action(cache) {

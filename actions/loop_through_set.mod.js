@@ -8,8 +8,8 @@ module.exports = {
     section: "Maps and Sets",
 
     subtitle(data, presets) {
-        const list = presets.lists;
-        return `Loop ${list[parseInt(data.storage, 10)]} through ${data.actions?.length ?? 0} actions.`;
+        const actions = data.actions?.length ?? 0;
+        return `Loop ${presets.getVariableText(data.storage, data.varName)} through ${actions} action${actions === 1 ? "" : "s"}.`;
     },
 
     meta: {
@@ -38,7 +38,6 @@ module.exports = {
                             <span class="dbminputlabel">Temp Variable Name</span><br>
                             <input id="tempVarName" class="round" type="text" placeholder="Leave blank for none...">
                         </div>
-
                         <div style="width: calc(50% - 12px);">
                             <span class="dbminputlabel">Call Type</span><br>
                             <select id="callType" class="round">
@@ -101,6 +100,8 @@ module.exports = {
         } catch (error) {
             this.displayError(data, cache, error);
         }
+
+        this.callNextAction(cache);
     },
 
     modInit(data) {
