@@ -64,7 +64,7 @@ module.exports = {
             isInstalled(...packageSpec) {
                 if (this._dependencyInfoCache === null) {
                     // Populate cache with current info
-                    this._dependencyInfoCache = this.callNPM("ls", [ "--omit=dev", "--omit=optional", "--omit=peer" ], { json: true, long: true });
+                    this._dependencyInfoCache = this.callNPM("ls", ["--omit=dev", "--omit=optional", "--omit=peer"], { json: true, long: true });
                 }
 
                 const dependenciesInfo = this._dependencyInfoCache;
@@ -121,8 +121,8 @@ module.exports = {
             const path = require("node:path");
 
             // Try to install additional node modules
-            DBM.Actions.modDirectories().forEach((dir) => {
-                fs.readdirSync(dir).forEach((file) => {
+            DBM.Actions.modDirectories().forEach(dir => {
+                fs.readdirSync(dir).forEach(file => {
                     if (!/\.js/i.test(file)) return;
                     /** @type {DBMAction} */
                     const action = require(path.join(dir, file));

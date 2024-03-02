@@ -117,7 +117,7 @@ module.exports = {
     init() {
         const { glob, document } = this;
 
-        glob.onComparisonChanged = function (event) {
+        glob.onComparisonChanged = function(event) {
             document.getElementById("valueContainer").style.display = event.value === "0" ? "none" : null;
             document.getElementById("valueLabel").innerText = event.value === "code" ? "Predicate Function" : "Value to Compare to";
         };

@@ -119,7 +119,7 @@ module.exports = {
             if (callType === 0) {
                 // Wait for Completion
                 let index = -1;
-    
+
                 for (const item of sequence.asIterable()) {
                     await new Promise((resolve, reject) => {
                         try {

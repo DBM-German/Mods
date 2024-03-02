@@ -48,8 +48,8 @@ declare module "dbm-types/dbm-2.1" {
                 resolved: string;
                 overridden: boolean;
                 [x: string]: any;
-            }
-        }
+            };
+        };
     }
 
     export interface DBMActionMetadata {

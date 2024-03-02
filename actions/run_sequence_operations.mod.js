@@ -978,9 +978,9 @@ module.exports = {
             const type = operation.type;
             let details;
 
-            const formatPrependNewValues = (value) => `${value === "true" ? "prepend" : "append"} new values`;
-            const formatDefaultValue = (value) => value?.length > 0 ? `default: ${value}` : "no default value";
-            const formatCallType = (value) => value === "0" ? "synchronously" : "asynchronously";
+            const formatPrependNewValues = value => `${value === "true" ? "prepend" : "append"} new values`;
+            const formatDefaultValue = value => value?.length > 0 ? `default: ${value}` : "no default value";
+            const formatCallType = value => value === "0" ? "synchronously" : "asynchronously";
 
             switch (type) {
                 case "distinct":
@@ -1038,7 +1038,7 @@ module.exports = {
                     details = `${operation.value} with ${operation.selector} (${formatPrependNewValues(operation.prependNewValues)})`;
                     break;
                 case "mergeByData":
-                    details `${operation.value} with ${operation.dataName} (${formatDefaultValue(operation.dataDefaultVal)}; ${formatPrependNewValues(operation.prependNewValues)})`;
+                    details = `${operation.value} with ${operation.dataName} (${formatDefaultValue(operation.dataDefaultVal)}; ${formatPrependNewValues(operation.prependNewValues)})`;
                     break;
                 case "onEach":
                     details = `Call ${operation.actions.length} Action${operation.actions.length === 1 ? "" : "s"} (${formatCallType(operation.callType)})`;
