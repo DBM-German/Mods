@@ -112,6 +112,17 @@ module.exports = {
 
                 return opts?.json ? JSON.parse(npmListResult.stdout) : npmListResult.stdout;
             },
+            eval(content, cache, options = {}) {
+                const customVariables = options?.customVariables ?? {};
+
+                let preparation = "";
+
+                for (const [name, { type }] of Object.entries(customVariables)) {
+                    preparation += `${type === "constant" ? "const" : "let"} ${name} = this._customVariables[${name}].value;\n`;
+                }
+
+                DBM.Actions.eval.call({ ...DBM.Actions, ...{ _customVariables: customVariables } }, `${preparation}\n${content}`, cache, options?.logError);
+            },
             _dependencyInfoCache: null
         };
 

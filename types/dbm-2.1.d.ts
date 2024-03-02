@@ -36,6 +36,15 @@ declare module "dbm-types/dbm-2.1" {
          */
         callNPM<optJSON extends boolean>(command: string, args?: readonly string[], opts?: { json?: optJSON, long?: boolean }): optJSON extends true ? any : string;
 
+        /**
+         * Eval function with additional features
+         * @param content Code to evaluate
+         * @param cache DBM actions cache
+         * @param options Options
+         * @returns Evaluation result
+         */
+        eval(content: string, cache: DBMActionsCache, options?: { logError?: boolean, customVariables?: { [name: string]: { value: unknown, type: "variable" | "constant" } } }): any;
+
         _dependencyInfoCache: NPMDependenciesInfo | null;
     }
 
