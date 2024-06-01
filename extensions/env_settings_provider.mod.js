@@ -30,11 +30,9 @@ module.exports = {
     },
 
     html(data) {
-        for (const field of this.fields.slice(1)) {
+        for (const field of this.fields) {
             if (data[field] == null) data[field] = this.defaultFields[field];
         }
-
-        console.log(data);
 
         /**
          * Escape user content to be JS-friendly
@@ -114,7 +112,11 @@ module.exports = {
         glob.onEnableChanged(document.getElementById("enable"));
     },
 
-    close(_document, _data, _globalObject) {
+    close(document, data, _globalObject) {
+        for (const field of this.fields) {
+            const element = /** @type {HTMLInputElement} */ (document.getElementById(field));
+            data[field] = element.value;
+        }
     },
 
     mod(DBM) {
