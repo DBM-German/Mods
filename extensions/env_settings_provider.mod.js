@@ -5,6 +5,7 @@ module.exports = {
     name: "Environment Variable Settings Provider [DBM German]",
     displayName: "Environment Variable Settings Provider",
     isEditorExtension: true,
+    saveButtonText: "Save Environment Variables",
 
     meta: {
         version: "2.1.7",
@@ -132,7 +133,7 @@ module.exports = {
                 settings[envVar] = process.env[envVar];
             }
 
-            _init.call(DBM.Files);
+            _init.call(DBM.Bot);
         };
     }
 };
