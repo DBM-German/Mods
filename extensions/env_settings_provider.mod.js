@@ -113,6 +113,9 @@ module.exports = {
         glob.onEnableChanged(document.getElementById("enable"));
     },
 
+    close(_document, _data, _globalObject) {
+    },
+
     mod(DBM) {
         const name = this.name;
         const envVars = this.fields.slice(1).filter(envVar => envVar.length > 0);
