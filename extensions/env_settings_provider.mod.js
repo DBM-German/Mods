@@ -127,10 +127,10 @@ module.exports = {
             /** @type {import("../types/dbm-2.1").DBMExtensionJSON} */
             const data = settings?.[name];
 
-            if (!data.enable) return;
-
-            for (const envVar of envVars) {
-                settings[envVar] = process.env[envVar];
+            if (data.enable) {
+                for (const envVar of envVars) {
+                    settings[envVar] = process.env[envVar];
+                }
             }
 
             _init.call(DBM.Bot);
