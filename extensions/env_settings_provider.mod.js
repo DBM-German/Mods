@@ -120,18 +120,25 @@ module.exports = {
     },
 
     mod(DBM) {
-        const name = this.name;
-        const envVars = this.fields.slice(1).filter(envVar => envVar.length > 0);
+        const extName = this.name;
+        const fields = this.fields.slice(1).filter(envVar => envVar.length > 0);
 
         const _init = DBM.Bot.init;
         DBM.Bot.init = function() {
             const settings = DBM.Files?.data.settings;
             /** @type {import("../types/dbm-2.1").DBMExtensionJSON} */
-            const data = settings?.[name];
+            const extData = settings?.[extName];
+            const customData = extData?.customData?.[extName];
 
-            if (data.enable) {
-                for (const envVar of envVars) {
-                    settings[envVar] = process.env[envVar];
+            if (customData.enable) {
+                for (const field of fields) {
+                    const envVarName = customData[field];
+                    const envVarValue = process.env[envVarName];
+
+                    if (envVarValue) {
+                        console.log(`Overriding setting "${field}" with value of "${envVarName}"`);
+                        settings[field] = envVarValue;
+                    }
                 }
             }
 
