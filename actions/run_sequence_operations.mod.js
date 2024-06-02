@@ -1096,7 +1096,7 @@ module.exports = {
             const transformFn = this.eval(`(item) => (${operation.transform || "item"})`, cache, true) || null;
             const transformWithIndexFn = this.eval(`(index, item) => (${operation.transform || "item"})`, cache, true) || null;
             const prependNewValues = operation.prependNewValues === "true";
-            const comparisonFn = this.eval(`(a, b) => (${operation.comparison})`, cache, true) || null;
+            const comparisonFn = this.eval(`(a, b) => (${operation.comparison || "a - b"})`, cache, true) || null;
             const tempVarName = this.evalMessage(operation.tempVarName, cache);
             const callType = parseInt(data.callType, 10);
             const subActions = operation.actions;

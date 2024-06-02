@@ -467,7 +467,7 @@ module.exports = {
         const dataName = this.evalMessage(data.dataName, cache);
         const dataDefaultVal = this.evalIfPossible(data.dataDefaultVal, cache);
         const predicateFn = this.eval(`(item) => (${data.predicate || "!!item"})`, cache, true) || null;
-        const comparisonFn = this.eval(`(a, b) => (${data.comparison})`, cache, true) || null;
+        const comparisonFn = this.eval(`(a, b) => (${data.comparison || "a - b"})`, cache, true) || null;
 
         let itemList;
 
