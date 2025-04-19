@@ -51,11 +51,6 @@ module.exports = {
     },
 
     init() {
-        const { glob } = this;
-
-        glob.formatItem = function(data) {
-            return data.value;
-        };
     },
 
     action(cache) {
@@ -83,8 +78,8 @@ module.exports = {
                     sequence = createSequence(map.values());
                     break;
             }
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         const storage2 = /** @type {DBMVarType} */ (parseInt(data.storage2, 10));

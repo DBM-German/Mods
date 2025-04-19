@@ -54,8 +54,8 @@ module.exports = {
 
         try {
             sequence = asSequence(set);
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         const storage2 = /** @type {DBMVarType} */ (parseInt(data.storage2, 10));

@@ -1,5 +1,26 @@
 /** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 /** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
+/**
+ * @typedef {import("sequency").default<T>} Sequence
+ * @template T
+ */
+/**
+ * @typedef {{
+ * type: keyof typeof OPERATIONS,
+ * value: string,
+ * number: string,
+ * selector: string,
+ * dataName: string,
+ * dataDefaultVal: string,
+ * predicate: string,
+ * transform: string,
+ * comparison: string,
+ * prependNewValues: string,
+ * tempVarName: string,
+ * callType: string,
+ * actions: string
+ * }} Operation
+ */
 
 const OPERATIONS = {
     distinct: "Distinct",
@@ -881,7 +902,7 @@ module.exports = {
                                     padding-left: 16px;
                                 }
                             </style>
-                            ${Object.entries(OPERATION_HELP_TEXTS).map(help => `<div class="help_textContainer"><span class="help_textContainerHeader">${OPERATIONS[help[0]] ?? "Error"}</span><div class="help_text">${help[1] ?? "Error"}</div></div>`).join("<br>\n")}
+                            ${Object.entries(OPERATION_HELP_TEXTS).map(help => `<div class="help_textContainer"><span class="help_textContainerHeader">${OPERATIONS[/** @type {keyof typeof OPERATIONS} */ (help[0])] ?? "Error"}</span><div class="help_text">${help[1] ?? "Error"}</div></div>`).join("<br>\n")}
                         </help-icon>
                     </span>
                     <br>
@@ -973,14 +994,13 @@ module.exports = {
         const { glob, document } = this;
         const operationSelect = /** @type {HTMLSelectElement} */ (document.querySelector("select[id=\"type\"]"));
 
-        glob.formatOperation = function(operation) {
-            /** @type {keyof typeof OPERATIONS} */
+        glob.formatOperation = function(/** @type {Operation} */ operation) {
             const type = operation.type;
             let details;
 
-            const formatPrependNewValues = value => `${value === "true" ? "prepend" : "append"} new values`;
-            const formatDefaultValue = value => value?.length > 0 ? `default: ${value}` : "no default value";
-            const formatCallType = value => value === "0" ? "synchronously" : "asynchronously";
+            const formatPrependNewValues = (/** @type {string} */ value) => `${value === "true" ? "prepend" : "append"} new values`;
+            const formatDefaultValue = (/** @type {string} */ value) => value?.length > 0 ? `default: ${value}` : "no default value";
+            const formatCallType = (/** @type {string} */ value) => value === "0" ? "synchronously" : "asynchronously";
 
             switch (type) {
                 case "distinct":
@@ -1058,15 +1078,15 @@ module.exports = {
         if (!operationSelect) return;
 
         // Remove autofocus used to trigger initialization
-        document.activeElement?.["blur"]?.();
+        /** @type {HTMLElement} */ (document.activeElement).blur();
 
-        glob.onOperationChange = function(event) {
+        glob.onOperationChange = function(/** @type {HTMLSelectElement & {value: keyof typeof OPERATIONS}} */ event) {
             for (const operationFieldContainer of OPERATION_FIELD_CONTAINERS) {
-                document.getElementById(operationFieldContainer).style.display = "none";
+                /** @type {HTMLElement} */ (document.getElementById(operationFieldContainer)).style.display = "none";
             }
 
             for (const operationFieldContainerMapping of OPERATION_FIELD_CONTAINER_MAPPINGS[event.value]) {
-                document.getElementById(operationFieldContainerMapping).style.display = null;
+                /** @type {HTMLElement} */ (document.getElementById(operationFieldContainerMapping)).style.display = "";
             }
         };
 
@@ -1079,7 +1099,7 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {import("sequency").default} */
+        /** @type {Sequence<any>} */
         let sequence = this.getVariable(storage, varName, cache);
 
         for (let i = 0; i < data.operations.length; i++) {
@@ -1229,8 +1249,8 @@ module.exports = {
                         sequence = sequence.zip(value);
                         break;
                 }
-            } catch (error) {
-                this.displayError(data, cache, error);
+            } catch (e) {
+                this.displayError(data, cache, /** @type {Error} */(e));
             }
         }
 

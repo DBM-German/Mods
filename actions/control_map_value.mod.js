@@ -71,10 +71,10 @@ module.exports = {
     init() {
         const { document, glob } = this;
         const controlTypeSelect = /** @type {HTMLSelectElement} */ (document.getElementById("controlType"));
-        const valueContainer = document.getElementById("valueContainer");
+        const valueContainer = /** @type {HTMLElement} */ (document.getElementById("valueContainer"));
 
-        glob.onControlTypeChange = function(event) {
-            valueContainer.style.display = event.value === "2" ? "none" : null;
+        glob.onControlTypeChange = function(/** @type {HTMLSelectElement} */ event) {
+            valueContainer.style.display = event.value === "2" ? "none" : "";
         };
 
         glob.onControlTypeChange(controlTypeSelect);
@@ -85,7 +85,7 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {Map} */
+        /** @type {Map<any, any>} */
         const map = this.getVariable(storage, varName, cache);
         const key = this.evalIfPossible(data.key, cache);
         const value = this.evalIfPossible(data.value, cache);

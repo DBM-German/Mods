@@ -74,13 +74,18 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {Map} */
+        /** @type {Map<any, any>} */
         const map = this.getVariable(storage, varName, cache);
 
         const keyVarName = this.evalMessage(data.keyVarName, cache);
         const valueVarName = this.evalMessage(data.valueVarName, cache);
         const callType = parseInt(data.callType, 10);
         const subActions = data.actions;
+
+        if (!subActions) {
+            this.callNextAction(cache);
+            return;
+        }
 
         try {
             if (callType === 0) {
@@ -104,8 +109,8 @@ module.exports = {
                     this.executeSubActions(subActions, cache);
                 });
             }
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         this.callNextAction(cache);

@@ -1,4 +1,5 @@
 /** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
+/** @typedef {import("../types/dbm-2.1").DBMModsAPI} DBMModsAPI */
 /** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
 
 /** @type {DBMAction} */
@@ -52,22 +53,24 @@ module.exports = {
     init() {
         const { glob, document } = this;
 
-        glob.listChange(document.getElementById("storage"), "varNameContainer");
+        glob.listChange(/** @type {HTMLElement} */ (document.getElementById("storage")), "varNameContainer");
     },
 
     async action(cache) {
         const data = cache.actions[cache.index];
+        /** @type {DBMModsAPI} https://github.com/microsoft/TypeScript/issues/34596 */
+        const Mods = this.getDBM().Mods;
         const { asSequence } = require("sequency");
 
-        /** @type {any[]} */
         const list = await this.getListFromData(data.storage, data.varName, cache);
+        Mods.assertArrayInput(list, data.storage, data.varName);
 
         let sequence;
 
         try {
             sequence = asSequence(list);
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         const storage2 = /** @type {DBMVarType} */ (parseInt(data.storage2, 10));

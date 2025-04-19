@@ -1,4 +1,5 @@
 /** @typedef {import("../types/dbm-2.1").DBMExtension} DBMExtension */
+/** @typedef {import("../types/dbm-2.1").DBMExtensionJSON} DBMExtensionJSON */
 
 /** @type {DBMExtension} */
 module.exports = {
@@ -86,7 +87,7 @@ module.exports = {
         const inputContainers = ["tokenContainer", "clientContainer", "ownerContainer", "slashTypeContainer", "slashServersContainer"];
         const inputElements = ["button", "fieldset", "optgroup", "select", "textarea", "input"];
 
-        glob.onEnableChanged = function(event) {
+        glob.onEnableChanged = function(/** @type {HTMLSelectElement} */ event) {
             let selector = "";
 
             for (const inputContainer of inputContainers) {
@@ -126,7 +127,7 @@ module.exports = {
         const _init = DBM.Bot.init;
         DBM.Bot.init = function() {
             const settings = DBM.Files?.data.settings;
-            /** @type {import("../types/dbm-2.1").DBMExtensionJSON} */
+            /** @type {DBMExtensionJSON} */
             const extData = settings?.[extName];
             const customData = extData?.customData?.[extName];
 

@@ -1,4 +1,4 @@
-import type { DBMActionsCache } from "dbm-types/dbm-2.1";
+import type { DBMActionsCache, DBMVarType } from "dbm-types/dbm-2.1";
 
 export type * from "dbm-types/dbm-2.1";
 
@@ -45,6 +45,15 @@ declare module "dbm-types/dbm-2.1" {
          */
         eval(content: string, cache: DBMActionsCache, options?: { logError?: boolean, customVariables?: { [name: string]: { value: unknown, type: "variable" | "constant" } } }): any;
 
+        /**
+         * Check if the input is an array
+         * @param input User input
+         * @param data DBM action JSON
+         * @param cache DBM actions cache
+         */
+        assertArrayInput<T = any>(input: unknown, storage: DBMVarType, varName: string): asserts input is T[];
+
+        _varTypes: Record<DBMVarType, string>;
         _dependencyInfoCache: NPMDependenciesInfo | null;
     }
 

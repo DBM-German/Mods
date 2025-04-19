@@ -8,6 +8,6 @@
         "noEmit": true,
         "checkJs": true,
         "declaration": true,
-        "strict": false
+        "strict": true
     }
 }

@@ -70,8 +70,8 @@ module.exports = {
             if (increment < 1) throw new Error(`Increment number (${data.increment}) must be higher than 0`);
 
             sequence = range(startNum, endNum, increment);
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));

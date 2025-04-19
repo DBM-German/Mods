@@ -1,5 +1,10 @@
 /** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 /** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
+/** @typedef {import("../types/dbm-2.1").DBMActionBranchJSON} DBMActionBranchJSON */
+/**
+ * @typedef {import("sequency").default<T>} Sequence
+ * @template T
+ */
 
 /** @type {DBMAction} */
 module.exports = {
@@ -87,8 +92,8 @@ module.exports = {
         const { glob, document } = this;
 
         glob.onComparisonChanged = function(event) {
-            document.getElementById("valueContainer").style.display = event.value === "0" ? "none" : null;
-            document.getElementById("valueLabel").innerText = event.value === "code" ? "Predicate Function" : "Value to Compare to";
+            /** @type {HTMLElement} */ (document.getElementById("valueContainer")).style.display = event.value === "0" ? "none" : "";
+            /** @type {HTMLElement} */ (document.getElementById("valueLabel")).innerText = event.value === "code" ? "Predicate Function" : "Value to Compare to";
         };
 
         glob.onComparisonChanged(/** @type {HTMLSelectElement} */ (document.getElementById("comparison")));
@@ -100,7 +105,7 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {import("sequency").default} */
+        /** @type {Sequence<any>} */
         let sequence = this.getVariable(storage, varName, cache);
 
         const restore = data.restore === "true";
@@ -200,10 +205,10 @@ module.exports = {
 
                 contains = match !== undefined && match !== null;
             }
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
-        this.executeResults(contains, data.branch, cache);
+        this.executeResults(contains, /** @type {DBMActionBranchJSON} */ (data.branch), cache);
     }
 };

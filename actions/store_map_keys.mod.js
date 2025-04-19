@@ -45,7 +45,7 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {Map} */
+        /** @type {Map<any, any>} */
         const map = this.getVariable(storage, varName, cache);
 
         const keys = new Set(map.keys());

@@ -1,5 +1,9 @@
 /** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 /** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
+/**
+ * @typedef {import("sequency").default<T>} Sequence
+ * @template T
+ */
 
 const OPERATIONS = {
     indexOfFirst: "Find First",
@@ -54,7 +58,7 @@ module.exports = {
                 <span class="dbminputlabel">
                     <span>Operation</span>
                     <help-icon dialogTitle="Terminal Operations Help" dialogWidth="600" dialogHeight="220" type="0">
-                        ${Object.entries(OPERATION_HELP_TEXTS).map(help => `<div class="help_textContainer"><span class="help_textContainerHeader">${OPERATIONS[help[0]] ?? "Error"}</span><div class="help_text">${help[1] ?? "Error"}</div></div>`).join("<br>\n")}
+                        ${Object.entries(OPERATION_HELP_TEXTS).map(help => `<div class="help_textContainer"><span class="help_textContainerHeader">${OPERATIONS[/** @type {keyof typeof OPERATIONS} */ (help[0])] ?? "Error"}</span><div class="help_text">${help[1] ?? "Error"}</div></div>`).join("<br>\n")}
                     </help-icon>
                 </span>
                 <br>
@@ -114,8 +118,8 @@ module.exports = {
         const { glob, document } = this;
 
         glob.onComparisonChanged = function(event) {
-            document.getElementById("valueContainer").style.display = event.value === "0" ? "none" : null;
-            document.getElementById("valueLabel").innerText = event.value === "code" ? "Predicate Function" : "Value to Compare to";
+            /** @type {HTMLElement} */ (document.getElementById("valueContainer")).style.display = event.value === "0" ? "none" : "";
+            /** @type {HTMLElement} */ (document.getElementById("valueLabel")).innerText = event.value === "code" ? "Predicate Function" : "Value to Compare to";
         };
 
         glob.onComparisonChanged(/** @type {HTMLSelectElement} */ (document.getElementById("comparison")));
@@ -127,7 +131,7 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {import("sequency").default} */
+        /** @type {Sequence<any>} */
         let sequence = this.getVariable(storage, varName, cache);
 
         /** @type {keyof typeof OPERATIONS} */
@@ -227,8 +231,8 @@ module.exports = {
                     return result;
                 });
             }
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         const storage2 = /** @type {DBMVarType} */ (parseInt(data.storage2, 10));

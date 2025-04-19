@@ -42,14 +42,14 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {Set} */
+        /** @type {Set<any>} */
         const set = this.getVariable(storage, varName, cache);
 
         let value = this.evalMessage(data.value, cache);
         try {
             value = this.eval(value, cache);
         } catch (e) {
-            this.displayError(data, cache, e);
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         set.add(value);

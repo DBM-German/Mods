@@ -1,5 +1,9 @@
 /** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 /** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
+/**
+ * @typedef {import("sequency").default<T>} Sequence
+ * @template T
+ */
 
 const OPERATIONS = {
     toArray: "One List",
@@ -145,7 +149,7 @@ module.exports = {
                                 padding-left: 16px;
                             }
                         </style>
-                        ${Object.entries(OPERATION_HELP_TEXTS).map(help => `<div class="help_textContainer"><span class="help_textContainerHeader">${OPERATIONS[help[0]] ?? "Error"}</span><div class="help_text">${help[1] ?? "Error"}</div></div>`).join("<br>\n")}
+                        ${Object.entries(OPERATION_HELP_TEXTS).map(help => `<div class="help_textContainer"><span class="help_textContainerHeader">${OPERATIONS[/** @type {keyof typeof OPERATIONS} */ (help[0])] ?? "Error"}</span><div class="help_text">${help[1] ?? "Error"}</div></div>`).join("<br>\n")}
                     </help-icon>
                 </span>
                 <br>
@@ -188,13 +192,13 @@ module.exports = {
         const { glob, document } = this;
         const operationSelect = /** @type {HTMLSelectElement} */ (document.querySelector("select[id=\"operation\"]"));
 
-        glob.onOperationChange = function(event) {
+        glob.onOperationChange = function(/** @type {HTMLSelectElement & {value: keyof typeof OPERATIONS}} */ event) {
             for (const operationFieldContainer of OPERATION_FIELD_CONTAINERS) {
-                document.getElementById(operationFieldContainer).style.display = "none";
+                /** @type {HTMLElement} */ (document.getElementById(operationFieldContainer)).style.display = "none";
             }
 
             for (const operationFieldContainerMapping of OPERATION_FIELD_CONTAINER_MAPPINGS[event.value]) {
-                document.getElementById(operationFieldContainerMapping).style.display = null;
+                /** @type {HTMLElement} */ (document.getElementById(operationFieldContainerMapping)).style.display = "";
             }
         };
 
@@ -207,7 +211,7 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {import("sequency").default} */
+        /** @type {Sequence<any>} */
         let sequence = this.getVariable(storage, varName, cache);
 
         /** @type {keyof typeof OPERATIONS} */
@@ -249,8 +253,8 @@ module.exports = {
                     result = sequence.unzip();
                     break;
             }
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         const storage2 = /** @type {DBMVarType} */ (parseInt(data.storage2, 10));

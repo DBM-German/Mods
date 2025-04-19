@@ -1,4 +1,5 @@
 /** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
+/** @typedef {import("../types/dbm-2.1").DBMModsAPI} DBMModsAPI */
 /** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
 /** @typedef {import("../types/dbm-2.1").DBMListType} DBMListType */
 
@@ -82,11 +83,11 @@ module.exports = {
     init() {
         const { glob, document } = this;
 
-        glob.listChange(document.getElementById("list"), "varNameContainer");
+        glob.listChange(/** @type {HTMLSelectElement} */ (document.getElementById("list")), "varNameContainer");
 
         glob.onComparisonChanged = function(event) {
-            document.getElementById("valueContainer").style.display = event.value === "0" ? "none" : null;
-            document.getElementById("valueLabel").innerText = event.value === "code" ? "Predicate Function" : "Value to Compare to";
+            /** @type {HTMLElement} */ (document.getElementById("valueContainer")).style.display = event.value === "0" ? "none" : "";
+            /** @type {HTMLElement} */ (document.getElementById("valueLabel")).innerText = event.value === "code" ? "Predicate Function" : "Value to Compare to";
         };
 
         glob.onComparisonChanged(/** @type {HTMLSelectElement} */ (document.getElementById("comparison")));
@@ -94,7 +95,11 @@ module.exports = {
 
     async action(cache) {
         const data = cache.actions[cache.index];
+        /** @type {DBMModsAPI} https://github.com/microsoft/TypeScript/issues/34596 */
+        const Mods = this.getDBM().Mods;
+
         const list = await this.getListFromData(data.list, data.varName, cache);
+        Mods.assertArrayInput(list, data.storage, data.varName);
 
         const comparison = data.comparison;
         let value;

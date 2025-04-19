@@ -1,13 +1,15 @@
 const { spawnSync } = require("node:child_process");
 
+/** @typedef {import("node:child_process").SpawnSyncOptionsWithStringEncoding} SpawnSyncOptionsWithStringEncoding */
+/** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
+/** @typedef {import("../types/dbm-2.1").NPMDependenciesInfo} NPMDependenciesInfo */
+
 /**
  * Regex to parse package args for the NPM registry
  * @see {@link https://semver.org/}
  * @see {@link https://www.npmjs.com/package/npm-package-arg}
  */
 const PACKAGE_ARG_REGEX = /^(?:(?<alias>(?:\w|-)+)@npm:)?(?:@(?<organization>(?:\w|-)+)\/)?(?<packagename>(?:\w|-)+)(?:@(?<version>(?:(?<major>0|[1-9]\d*))?(?:\.(?<minor>0|[1-9]\d*))?(?:\.(?<patch>0|[1-9]\d*))?(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)|@(?<tag>[^0-9v](?:\w|-)*))?$/;
-
-/** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 
 /** @type {DBMAction} */
 module.exports = {
@@ -67,7 +69,7 @@ module.exports = {
                     this._dependencyInfoCache = this.callNPM("ls", ["--omit=dev", "--omit=optional", "--omit=peer"], { json: true, long: true });
                 }
 
-                const dependenciesInfo = this._dependencyInfoCache;
+                const dependenciesInfo = /** @type {NPMDependenciesInfo} */ (this._dependencyInfoCache);
                 const packageInfoList = /** @type {RegExpMatchArray[]} */ (
                     packageSpec.map(spec => spec.match(PACKAGE_ARG_REGEX)).filter(match => !!match)
                 );
@@ -94,9 +96,9 @@ module.exports = {
                     command,
                     ...(opts?.json ? ["--json"] : []),
                     ...(opts?.long ? ["--long"] : []),
-                    ...args
+                    ...(args ?? [])
                 ];
-                /** @type {import("node:child_process").SpawnSyncOptionsWithStringEncoding} */
+                /** @type {SpawnSyncOptionsWithStringEncoding} */
                 const spawnOpts = {
                     encoding: "utf-8",
                     windowsHide: true,
@@ -122,6 +124,18 @@ module.exports = {
                 }
 
                 DBM.Actions.eval.call({ ...DBM.Actions, ...{ _customVariables: customVariables } }, `${preparation}\n${content}`, cache, options?.logError);
+            },
+            /** @type {(input: unknown, storage: import("../types/dbm-2.1").DBMVarType, varName: string) => asserts input is unknown[]} */
+            assertArrayInput(input, storage, varName) {
+                if (Array.isArray(input)) return;
+
+                throw new TypeError(`${this._varTypes[storage]} "${varName}" is not an array: ${input}`);
+            },
+            _varTypes: {
+                1: "Temp Variable",
+                2: "Server Variable",
+                3: "Global Variable",
+                4: "Interaction Parameter"
             },
             _dependencyInfoCache: null
         };

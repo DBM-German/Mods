@@ -1,5 +1,9 @@
 /** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 /** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
+/**
+ * @typedef {import("sequency").default<T>} Sequence
+ * @template T
+ */
 
 /** @type {DBMAction} */
 module.exports = {
@@ -92,7 +96,7 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {import("sequency").default} */
+        /** @type {Sequence<any>} */
         let sequence = this.getVariable(storage, varName, cache);
 
         const restore = data.restore === "true";
@@ -100,6 +104,11 @@ module.exports = {
         const posVarName = this.evalMessage(data.posVarName, cache);
         const callType = parseInt(data.callType, 10);
         const subActions = data.actions;
+
+        if (!subActions) {
+            this.callNextAction(cache);
+            return;
+        }
 
         let itemList;
 
@@ -146,8 +155,8 @@ module.exports = {
                     });
                 }
             }
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         this.callNextAction(cache);

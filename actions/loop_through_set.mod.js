@@ -70,12 +70,17 @@ module.exports = {
 
         const storage = /** @type {DBMVarType} */ (parseInt(data.storage, 10));
         const varName = this.evalMessage(data.varName, cache);
-        /** @type {Set} */
+        /** @type {Set<any>} */
         const set = this.getVariable(storage, varName, cache);
 
         const tempVarName = this.evalMessage(data.tempVarName, cache);
         const callType = parseInt(data.callType, 10);
         const subActions = data.actions;
+
+        if (!subActions) {
+            this.callNextAction(cache);
+            return;
+        }
 
         try {
             if (callType === 0) {
@@ -97,8 +102,8 @@ module.exports = {
                     this.executeSubActions(subActions, cache);
                 });
             }
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         this.callNextAction(cache);

@@ -1,5 +1,6 @@
 /** @typedef {import("../types/dbm-2.1").DBMAction} DBMAction */
 /** @typedef {import("../types/dbm-2.1").DBMVarType} DBMVarType */
+/** @typedef {{ value: string }} SequenceItem */
 
 /** @type {DBMAction} */
 module.exports = {
@@ -48,8 +49,8 @@ module.exports = {
     init() {
         const { glob } = this;
 
-        glob.formatItem = function(data) {
-            return data.value;
+        glob.formatItem = function(/** @type {SequenceItem} */ item) {
+            return item.value;
         };
     },
 

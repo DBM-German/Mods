@@ -33,7 +33,8 @@ module.exports = {
         `;
     },
 
-    init() {},
+    init() {
+    },
 
     action(cache) {
         const data = cache.actions[cache.index];

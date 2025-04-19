@@ -82,8 +82,8 @@ module.exports = {
             } else {
                 sequence = generateSequence(nextFn);
             }
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
             sequence = emptySequence();
         }
 

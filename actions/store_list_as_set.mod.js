@@ -51,7 +51,7 @@ module.exports = {
     init() {
         const { glob, document } = this;
 
-        glob.listChange(document.getElementById("storage"), "varNameContainer");
+        glob.listChange(/** @type {HTMLElement} */ (document.getElementById("storage")), "varNameContainer");
     },
 
     async action(cache) {
@@ -63,8 +63,8 @@ module.exports = {
 
         try {
             set = new Set(list);
-        } catch (error) {
-            this.displayError(data, cache, error);
+        } catch (e) {
+            this.displayError(data, cache, /** @type {Error} */ (e));
         }
 
         const storage2 = /** @type {DBMVarType} */ (parseInt(data.storage2, 10));
