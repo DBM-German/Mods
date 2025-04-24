@@ -16,7 +16,35 @@
     "extends": ["eslint:recommended", "plugin:@stylistic/recommended-extends"],
     "overrides": [
         {
-            "files": ["*.js"],
+            "files": ["*.js", "*.cjs"],
+            "parserOptions": {
+                "ecmaVersion": "latest",
+                "sourceType": "commonjs"
+            },
+            "rules": {
+                "no-unused-vars": ["error", {
+                    "args": "after-used",
+                    "argsIgnorePattern": "^_",
+                    "caughtErrors": "none",
+                    "destructuredArrayIgnorePattern": "^_"
+                }],
+                "eqeqeq": "error",
+                "@stylistic/indent": ["error", 4, {
+                    "SwitchCase": 1
+                }],
+                "@stylistic/quotes": ["error", "double"],
+                "@stylistic/semi": ["error", "always"],
+                "@stylistic/eol-last": "error",
+                "@stylistic/comma-dangle": ["error", "never"],
+                "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+                "@stylistic/array-bracket-spacing": ["error", "never"],
+                "@stylistic/object-curly-spacing": ["error", "always"],
+                "@stylistic/space-before-function-paren": ["error", "never"],
+                "@stylistic/arrow-parens": ["error", "as-needed"]
+            }
+        },
+        {
+            "files": ["*.mjs"],
             "parserOptions": {
                 "ecmaVersion": "latest",
                 "sourceType": "module"
@@ -28,6 +56,7 @@
                     "caughtErrors": "none",
                     "destructuredArrayIgnorePattern": "^_"
                 }],
+                "eqeqeq": "error",
                 "@stylistic/indent": ["error", 4, {
                     "SwitchCase": 1
                 }],
@@ -54,6 +83,7 @@
             "extends": ["plugin:@typescript-eslint/recommended-type-checked"],
             "rules": {
                 "no-unused-vars": "off",
+                "eqeqeq": "error",
                 "@typescript-eslint/no-explicit-any": "off",
                 "@typescript-eslint/no-redundant-type-constituents": "warn",
                 "@stylistic/indent": ["error", 4, {

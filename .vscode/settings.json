@@ -3,6 +3,10 @@
         "editor.wordWrap": "off",
         "diffEditor.wordWrap": "off"
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "eslint.validate": ["javascript", "markdown"],
     "eslint.format.enable": true,
     "markdownlint.ignore": ["**/*"] // Disable markdownlint extension in favor of eslint

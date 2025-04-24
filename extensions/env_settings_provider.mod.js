@@ -32,7 +32,7 @@ module.exports = {
 
     html(data) {
         for (const field of this.fields) {
-            if (data[field] == null) data[field] = this.defaultFields[field];
+            if (data[field] === undefined) data[field] = this.defaultFields[field];
         }
 
         /**
@@ -122,16 +122,16 @@ module.exports = {
 
     mod(DBM) {
         const extName = this.name;
-        const fields = this.fields.slice(1).filter(envVar => envVar.length > 0);
+        const fields = this.fields.slice(1);
 
         const _init = DBM.Bot.init;
         DBM.Bot.init = function() {
             const settings = DBM.Files?.data.settings;
-            /** @type {DBMExtensionJSON} */
             const extData = settings?.[extName];
+            /** @type {DBMExtensionJSON} */
             const customData = extData?.customData?.[extName];
 
-            if (customData.enable) {
+            if (customData.enable === "true") {
                 for (const field of fields) {
                     const envVarName = customData[field];
                     const envVarValue = process.env[envVarName];
