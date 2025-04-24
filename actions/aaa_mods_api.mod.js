@@ -32,7 +32,7 @@ module.exports = {
     fields: [],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         This action provides additional internal functionality to other mods. It has no purpose in a regular action sequence and will just call the next action.
         `;
     },

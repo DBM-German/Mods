@@ -8,7 +8,7 @@ module.exports = {
     section: "Maps and Sets",
 
     subtitle(data, presets) {
-        return `Remove "${data.value}" from ${presets.getVariableText(data.storage, data.varName)}`;
+        return /* html */ `Remove "${data.value}" from ${presets.getVariableText(data.storage, data.varName)}`;
     },
 
     meta: {
@@ -22,7 +22,7 @@ module.exports = {
     fields: ["storage", "varName", "value"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Set" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br>

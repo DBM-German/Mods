@@ -44,7 +44,7 @@ module.exports = {
             return text.replaceAll("\\", "\\\\").replaceAll("\"", "\\\"");
         }
 
-        return `
+        return /* html */ `
         <div style="padding: 8px">
             <div style="width: 35%">
                 <select id="enable" class="round" onchange="glob.onEnableChanged(this)">

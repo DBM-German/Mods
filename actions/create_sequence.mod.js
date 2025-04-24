@@ -30,7 +30,7 @@ module.exports = {
     fields: ["values", "storage", "varName"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <dialog-list id="values" fields='["value"]' dialogResizable dialogTitle="Sequence Value" dialogWidth="600" dialogHeight="150" listLabel="Sequence Values" listStyle="height: calc(100vh - 290px);" itemName="Value" itemHeight="28px;" itemTextFunction="glob.formatItem(data)" itemStyle="line-height: 28px;">
             <div style="padding: 16px;">
                 <div>

@@ -13,7 +13,7 @@ module.exports = {
 
     subtitle(data, presets) {
         const actions = data.actions?.length ?? 0;
-        return `Loop ${presets.getVariableText(data.storage, data.varName)} through ${actions} action${actions === 1 ? "" : "s"}.`;
+        return /* html */ `Loop ${presets.getVariableText(data.storage, data.varName)} through ${actions} action${actions === 1 ? "" : "s"}.`;
     },
 
     meta: {
@@ -28,7 +28,7 @@ module.exports = {
     fields: ["storage", "varName", "restore", "itemVarName", "posVarName", "callType", "actions"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <tab-system>
             <tab label="Iteration Options" icon="align right">
                 <div style="padding: 12px">

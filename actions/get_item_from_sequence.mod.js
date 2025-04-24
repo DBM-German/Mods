@@ -52,13 +52,13 @@ const OPERATION_FIELD_CONTAINER_MAPPINGS = {
 
 /** @type {Record<keyof typeof OPERATIONS, string> }} */
 const OPERATION_HELP_TEXTS = {
-    first: `
+    first: /* html */ `
     Stores the first item or <span class="help_highlightText">null</span>.
     `,
-    last: `
+    last: /* html */ `
     Stores the last item or <span class="help_highlightText">null</span>.
     `,
-    findFirst: `
+    findFirst: /* html */ `
     Stores the first item matching the <span class="help_highlightText">Predicate Function</span> or <span class="help_highlightText">null</span> otherwise.
     <br><br>
     <b>Options</b>
@@ -85,7 +85,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    findLast: `
+    findLast: /* html */ `
     Stores the last item matching the <span class="help_highlightText">Predicate Function</span> or <span class="help_highlightText">null</span> otherwise.
     <br><br>
     <b>Options</b>
@@ -112,10 +112,10 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    single: `
+    single: /* html */ `
     Stores the single item matching the <span class="help_highlightText">Predicate Function</span> or <span class="help_highlightText">null</span> if more or less than one item fulfill the comparison.
     `,
-    elementAt: `
+    elementAt: /* html */ `
     Stores the item at the position (zero-based <span class="help_highlightText">Number</span>) or <span class="help_highlightText">null</span> if the position is out of bounds.
     <br><br>
     <b>Options</b>
@@ -136,10 +136,10 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    max: `
+    max: /* html */ `
     Stores the maximum item or <span class="help_highlightText">null</span> if sequence is empty.
     `,
-    maxBy: `
+    maxBy: /* html */ `
     Stores the maximum item by comparing the results of the given <span class="help_highlightText">Selector Function</span> for each item of the sequence or <span class="help_highlightText">null</span> if the sequence is empty.
     <br><br>
     <b>Options</b>
@@ -166,7 +166,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    maxByData: `
+    maxByData: /* html */ `
     Stores the maximum item by comparing the value associated to the given <span class="help_highlightText">Data Name</span>.
     <br><br>
     <b>Options</b>
@@ -191,7 +191,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    maxWith: `
+    maxWith: /* html */ `
     Stores the maximum item by evaluating the given <span class="help_highlightText">Comparison Functions</span> or <span class="help_highlightText">null</span> if the sequence is empty.
     <br><br>
     <b>Options</b>
@@ -219,10 +219,10 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    min: `
+    min: /* html */ `
     Stores the minimum item or <span class="help_highlightText">null</span> if the sequence is empty.
     `,
-    minBy: `
+    minBy: /* html */ `
     Stores the minimum item by comparing the results of the given <span class="help_highlightText">Selector Function</span> for each item of the sequence or <span class="help_highlightText">null</span> if the sequence is empty.
     <br><br>
     <b>Options</b>
@@ -249,7 +249,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    minByData: `
+    minByData: /* html */ `
     Stores the minimum item by comparing the value associated to the given <span class="help_highlightText">Data Name</span>.
     <br><br>
     <b>Options</b>
@@ -274,7 +274,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    minWith: `
+    minWith: /* html */ `
     Stores the minimum item by evaluating the given <span class="help_highlightText">Comparison Functions</span> or <span class="help_highlightText">null</span> if the sequence is empty.
     <br><br>
     <b>Options</b>
@@ -302,7 +302,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    random: `
+    random: /* html */ `
     Stores an item at a random position or <span class="help_highlightText">null</span> if the sequence is empty.
     `
 };
@@ -314,7 +314,7 @@ module.exports = {
     section: "Sequences",
 
     subtitle(data, presets) {
-        return `Get Item from ${presets.getVariableText(data.storage, data.varName)}`;
+        return /* html */ `Get Item from ${presets.getVariableText(data.storage, data.varName)}`;
     },
 
     variableStorage(data, varType) {
@@ -335,7 +335,7 @@ module.exports = {
     fields: ["storage", "varName", "operation", "restore", "number", "selector", "dataName", "dataDefaultVal", "predicate", "comparison", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>

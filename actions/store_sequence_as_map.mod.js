@@ -32,10 +32,10 @@ const OPERATION_FIELD_CONTAINER_MAPPINGS = {
 
 /** @type {Record<keyof typeof OPERATIONS, string> }} */
 const OPERATION_HELP_TEXTS = {
-    associate: `
+    associate: /* html */ `
     Transforms each item into a key-value pair and then stores those in a map. In case of duplicate keys the last key-value pair overrides the other.
     `,
-    associateBy: `
+    associateBy: /* html */ `
     Stores a map consisting of the items mapped by the result of the given <span class="help_highlightText">Selector Function</span>.
     <br><br>
     <b>Options</b>
@@ -62,7 +62,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    associateByData: `
+    associateByData: /* html */ `
     Stores a map consisting of the items mapped to the values associated to the given <span class="help_highlightText">Data Name</span>.
     <br><br>
     <b>Options</b>
@@ -87,7 +87,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    groupBy: `
+    groupBy: /* html */ `
     Groups all elements of the sequence into a map, where the keys are determined by the given <span class="help_highlightText">Selector Function</span>.
     <br><br>
     <b>Options</b>
@@ -114,7 +114,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    groupByData: `
+    groupByData: /* html */ `
     Groups all elements of the sequence into a map, where the keys are determined by the values associated to the given <span class="help_highlightText">Data Name</span>.
     <br><br>
     <b>Options</b>
@@ -139,7 +139,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    toMap: `
+    toMap: /* html */ `
     Stores a map consisting of each key-value pair in the zipped sequence.
     `
 };
@@ -151,7 +151,7 @@ module.exports = {
     section: "Sequences",
 
     subtitle(data, presets) {
-        return `Store ${presets.getVariableText(data.storage, data.varName)} as Map`;
+        return /* html */ `Store ${presets.getVariableText(data.storage, data.varName)} as Map`;
     },
 
     variableStorage(data, varType) {
@@ -172,7 +172,7 @@ module.exports = {
     fields: ["storage", "varName", "operation", "restore", "number", "predicate", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>

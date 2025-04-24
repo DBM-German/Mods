@@ -12,7 +12,7 @@ module.exports = {
     section: "Sequences",
 
     subtitle(data, presets) {
-        return `Convert ${presets.getVariableText(data.storage, data.varName)} to Text`;
+        return /* html */ `Convert ${presets.getVariableText(data.storage, data.varName)} to Text`;
     },
 
     variableStorage(data, varType) {
@@ -33,7 +33,7 @@ module.exports = {
     fields: ["storage", "varName", "restore", "prefix", "separator", "postfix", "limit", "truncated", "transform", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>

@@ -12,7 +12,7 @@ module.exports = {
     section: "Sequences",
 
     subtitle(data, presets) {
-        return `Count ${data.predicate ? "specific" : "all"} Items in ${presets.getVariableText(data.storage, data.varName)}`;
+        return /* html */ `Count ${data.predicate ? "specific" : "all"} Items in ${presets.getVariableText(data.storage, data.varName)}`;
     },
 
     variableStorage(data, varType) {
@@ -33,7 +33,7 @@ module.exports = {
     fields: ["storage", "varName", "restore", "predicate", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>

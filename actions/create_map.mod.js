@@ -28,7 +28,7 @@ module.exports = {
     fields: ["storage", "varName"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <store-in-variable selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></store-in-variable>
         `;
     },

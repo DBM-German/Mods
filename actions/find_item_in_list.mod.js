@@ -10,7 +10,7 @@ module.exports = {
     section: "Lists and Loops",
 
     subtitle(data, presets) {
-        return `Find Item in ${presets.getListText(data.list, data.varName)}`;
+        return /* html */ `Find Item in ${presets.getListText(data.list, data.varName)}`;
     },
 
     variableStorage(data, varType) {
@@ -31,7 +31,7 @@ module.exports = {
     fields: ["list", "varName", "comparison", "value", "storage", "varName2"],
 
     html(isEvent, data) {
-        return `
+        return /* html */ `
         <div>
             <div style="float: left; width: 35%;">
                 <span class="dbminputlabel">Source List</span><br>
@@ -125,6 +125,7 @@ module.exports = {
                         result = item !== undefined && item !== null;
                         break;
                     case "1":
+                        // eslint-disable-next-line eqeqeq
                         result = item == value;
                         break;
                     case "3":

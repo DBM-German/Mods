@@ -29,7 +29,7 @@ module.exports = {
     fields: ["seed", "next", "storage", "varName"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <div style="display: flex; flex-direction: column; align-items: stretch; height: calc(100vh - 220px);">
             <div style="flex: 1;">
                 <span class="dbminputlabel">

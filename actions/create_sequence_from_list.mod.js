@@ -30,7 +30,7 @@ module.exports = {
     fields: ["storage", "varName", "storage2", "varName2"],
 
     html(isEvent, data) {
-        return `
+        return /* html */ `
         <div>
             <div style="float: left; width: 35%;">
                 <span class="dbminputlabel">Source List</span><br>

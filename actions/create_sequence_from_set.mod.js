@@ -29,7 +29,7 @@ module.exports = {
     fields: ["storage", "varName", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Set" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>

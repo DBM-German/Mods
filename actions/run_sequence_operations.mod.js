@@ -111,10 +111,10 @@ const OPERATION_FIELD_CONTAINER_MAPPINGS = {
 
 /** @type {Record<keyof typeof OPERATIONS, string> }} */
 const OPERATION_HELP_TEXTS = {
-    distinct: `
+    distinct: /* html */ `
     Discards all duplicate items.
     `,
-    distinctBy: `
+    distinctBy: /* html */ `
     Discards all items with duplicate results determined by the given <span class="help_highlightText">Selector Function</span>.
     <br><br>
     <b>Options</b>
@@ -141,7 +141,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    distinctByData: `
+    distinctByData: /* html */ `
     Discards all items with duplicate values associated to the given <span class="help_highlightText">Data Name</span>.
     <br><br>
     <b>Options</b>
@@ -166,7 +166,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    drop: `
+    drop: /* html */ `
     Discards the specified <span class="help_highlightText">Number</span> of items.
     <br><br>
     <b>Options</b>
@@ -187,7 +187,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    dropWhile: `
+    dropWhile: /* html */ `
     Drops all items as long as the given <span class="help_highlightText">Predicate Function</span> evaluates to <span class="help_highlightText">true</span>.
     <br><br>
     <b>Options</b>
@@ -214,7 +214,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    filter: `
+    filter: /* html */ `
     Keeps only items that match the given <span class="help_highlightText">Predicate Function</span>.
     <br><br>
     <b>Options</b>
@@ -241,7 +241,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    filterIndexed: `
+    filterIndexed: /* html */ `
     Keeps only items that match the given <span class="help_highlightText">Predicate Function</span>.
     <br><br>
     <b>Options</b>
@@ -269,7 +269,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    filterNot: `
+    filterNot: /* html */ `
     Keeps only items that don't match the given <span class="help_highlightText">Predicate Function</span>.
     <br><br>
     <b>Options</b>
@@ -296,10 +296,10 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    filterNotNull: `
+    filterNotNull: /* html */ `
     Keeps only non-null items (neither <span class="help_highlightText">null</span> nor <span class="help_highlightText">undefined</span>).
     `,
-    flatMap: `
+    flatMap: /* html */ `
     Transforms each item into a new sequence of items and combines them to a single flat sequence consisting of those items.
     <br><br>
     <b>Options</b>
@@ -326,10 +326,10 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    flatten: `
+    flatten: /* html */ `
     Transforms items that are sequences or iterables to a single flat sequence of all those items while keeping the other items as they are.
     `,
-    map: `
+    map: /* html */ `
     Transforms each item into another value by applying the given <span class="help_highlightText">Transform Function</span>.
     <br><br>
     <b>Options</b>
@@ -356,7 +356,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    mapIndexed: `
+    mapIndexed: /* html */ `
     Transforms each item into another value by applying the given <span class="help_highlightText">Transform Function</span>.
     <br><br>
     <b>Options</b>
@@ -384,7 +384,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    mapNotNull: `
+    mapNotNull: /* html */ `
     Transforms each item into another value by applying the given <span class="help_highlightText">Transform Function</span>.
     Transformations into null values (either <span class="help_highlightText">null</span> or <span class="help_highlightText">undefined</span>) are discarded.
     <br><br>
@@ -412,7 +412,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    mapToData: `
+    mapToData: /* html */ `
     Transforms each item into another value associated to the given <span class="help_highlightText">Data Name</span>.
     Transformations into null values (either <span class="help_highlightText">null</span> or <span class="help_highlightText">undefined</span>) are discarded.
     <br><br>
@@ -438,7 +438,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    merge: `
+    merge: /* html */ `
     Merges the items of two sequences into a new sequence.
     Each item of the current sequence is eventually replaced with an item of the other sequence by comparing them to each other.
     If no value is found in the other sequence the item is retained. New items of the other sequence are appended to the end of the new sequence or prepended to the start of the new sequence,
@@ -467,7 +467,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    mergeBy: `
+    mergeBy: /* html */ `
     Merges the items of two sequences into a new sequence.
     Each item of the current sequence is eventually replaced with an item of the other sequence by comparing the results of the given <span class="help_highlightText">Selector Function</span>.
     If no value is found in the other sequence the item is retained. New items of the other sequence are appended to the end of the new sequence or prepended to the start of the new sequence,
@@ -512,7 +512,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    mergeByData: `
+    mergeByData: /* html */ `
     Merges the items of two sequences into a new sequence.
     Each item of the current sequence is eventually replaced with an item of the other sequence by comparing the values associated to the given <span class="help_highlightText">Data Name</span>.
     If no value is found in the other sequence the item is retained. New items of the other sequence are appended to the end of the new sequence or prepended to the start of the new sequence,
@@ -549,7 +549,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    minus: `
+    minus: /* html */ `
     Removes the given data which can either be a single item, a list (array) of items or another sequence.
     <br><br>
     <b>Options</b>
@@ -570,7 +570,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    onEach: `
+    onEach: /* html */ `
     Performs the given actions for each item without actively changing them.<br>
     <strong>This operation is either lazily evaluated (Call Type "Run Simultaneously") or immediately once the operation is started (Call Type "Wait for Completion"),
     meaning that all input data gets examined immediately once the operation is invoked!</strong>
@@ -601,7 +601,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    plus: `
+    plus: /* html */ `
     Adds the given data which can either be a single item, a list (array) of items or another sequence.
     Data gets appended to the end of the sequence or prepended to the start, if <span class="help_highlightText">Prepend New Values</span> is enabled.<br>
     <br><br>
@@ -627,16 +627,16 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    reverse: `
+    reverse: /* html */ `
     Reverses the order of the items in the sequence.
     `,
-    sorted: `
+    sorted: /* html */ `
     Sorts the items in the sequence in natural (ascending) order.
     `,
-    sortedDescending: `
+    sortedDescending: /* html */ `
     Sorts the items in the sequence in reverse (descending) order.
     `,
-    sortedBy: `
+    sortedBy: /* html */ `
     Sorts the items in the sequence in natural (ascending) order by the result of the given <span class="help_highlightText">Selector Function</span>.
     <br><br>
     <b>Options</b>
@@ -663,7 +663,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    sortedByDescending: `
+    sortedByDescending: /* html */ `
     Sorts the items in the sequence in reverse (descending) order by the result of the given <span class="help_highlightText">Selector Function</span>.
     <br><br>
     <b>Options</b>
@@ -690,7 +690,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    sortedByData: `
+    sortedByData: /* html */ `
     Sorts the items in the sequence in natural (ascending) order by the value associated to the given <span class="help_highlightText">Data Name</span>.
     <br><br>
     <b>Options</b>
@@ -715,7 +715,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    sortedByDataDescending: `
+    sortedByDataDescending: /* html */ `
     Sorts the items in the sequence in reverse (descending) order by the value associated to the given <span class="help_highlightText">Data Name</span>.
     <br><br>
     <b>Options</b>
@@ -740,7 +740,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    sortedWith: `
+    sortedWith: /* html */ `
     Sorts the items in the sequence by the result of the given <span class="help_highlightText">Comparison Functions</span>.
     <br><br>
     <b>Options</b>
@@ -768,7 +768,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    take: `
+    take: /* html */ `
     Keeps only the specified <span class="help_highlightText">Number</span> of items. All other items are discarded.
     <br><br>
     <b>Options</b>
@@ -789,7 +789,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    takeWhile: `
+    takeWhile: /* html */ `
     Keeps items only until the given <span class="help_highlightText">Predicate Function</span> evaluates to <span class="help_highlightText">true</span>.
     <br><br>
     <b>Options</b>
@@ -816,10 +816,10 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    withIndex: `
+    withIndex: /* html */ `
     Transforms each item into another value which consists of the current index in the sequence and the original item as its own value (<span class="help_highlightText">{ index: number, value: any }</span>).
     `,
-    zip: `
+    zip: /* html */ `
     Merges the items of two sequences into a new sequence. Each item of the current sequence is eventually linked with an item of the other sequence at the same index (pair structure: <span class="help_highlightText">[ item1, item2 ]</span>).
     The resulting sequence has the length of the shortest input sequence. All other items are discarded.
     <br><br>
@@ -850,7 +850,7 @@ module.exports = {
     section: "Sequences",
 
     subtitle(data, presets) {
-        return `Run ${Object.keys(data.operations).length} Operations on ${presets.getVariableText(data.storage, data.varName)}`;
+        return /* html */ `Run ${Object.keys(data.operations).length} Operations on ${presets.getVariableText(data.storage, data.varName)}`;
     },
 
     meta: {
@@ -865,7 +865,7 @@ module.exports = {
     fields: ["storage", "varName", "operations"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>

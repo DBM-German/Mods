@@ -28,7 +28,7 @@ module.exports = {
     fields: ["storage", "varName", "restore", "comparison", "value", "branch"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>
@@ -149,6 +149,7 @@ module.exports = {
                             result = item !== undefined && item !== null;
                             break;
                         case "1":
+                            // eslint-disable-next-line eqeqeq
                             result = item == value;
                             break;
                         case "2":

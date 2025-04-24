@@ -29,7 +29,7 @@ module.exports = {
     fields: ["startNum", "endNum", "increment", "storage", "varName"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <div style="display: flex; justify-content: space-between;">
             <div style="width: calc(35% - 4vw);">
                 <span class="dbminputlabel">Start Number</span><br>

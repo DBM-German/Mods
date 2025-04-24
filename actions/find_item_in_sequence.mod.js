@@ -12,10 +12,10 @@ const OPERATIONS = {
 
 /** @type {Record<keyof typeof OPERATIONS, string> }} */
 const OPERATION_HELP_TEXTS = {
-    indexOfFirst: `
+    indexOfFirst: /* html */ `
     Stores the position (zero-based) of the first item fulfilling the given comparison or <span class="help_highlightText">-1</span> if no item fulfills it.
     `,
-    indexOfLast: `
+    indexOfLast: /* html */ `
     Stores the position (zero-based) of the last item fulfilling the given comparison or <span class="help_highlightText">-1</span> if no item fulfills it.
     `
 };
@@ -27,7 +27,7 @@ module.exports = {
     section: "Sequences",
 
     subtitle(data, presets) {
-        return `Find Item in ${presets.getVariableText(data.storage, data.varName)}`;
+        return /* html */ `Find Item in ${presets.getVariableText(data.storage, data.varName)}`;
     },
 
     variableStorage(data, varType) {
@@ -48,7 +48,7 @@ module.exports = {
     fields: ["storage", "varName", "operation", "restore", "comparison", "value", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>
@@ -177,6 +177,7 @@ module.exports = {
                             result = item !== undefined && item !== null;
                             break;
                         case "1":
+                            // eslint-disable-next-line eqeqeq
                             result = item == value;
                             break;
                         case "2":

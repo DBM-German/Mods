@@ -27,10 +27,10 @@ const OPERATION_FIELD_CONTAINER_MAPPINGS = {
 
 /** @type {Record<keyof typeof OPERATIONS, string> }} */
 const OPERATION_HELP_TEXTS = {
-    toArray: `
+    toArray: /* html */ `
     Stores all items in the sequence as one list.
     `,
-    chunk: `
+    chunk: /* html */ `
     Splits the items in the sequence into separate lists whose length is determined by the specified <span class="help_highlightText">Size</span> and then stores all chunks in a list.
     <br><br>
     <b>Options</b>
@@ -51,7 +51,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    partition: `
+    partition: /* html */ `
     Assorts each item into one of two lists according to the result of the given <span class="help_highlightText">Predicate Function</span> and then stores both partitions in the result list,
     where <span class="help_highlightText">false</span> values are at position <span class="help_highlightText">0</span> and <span class="help_highlightText">true</span> values at position <span class="help_highlightText">1</span>.
     <br><br>
@@ -79,7 +79,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    unzip: `
+    unzip: /* html */ `
     Assorts the key and value of each key-value pair in the zipped sequence into two separate lists and then stores both of them in the result list,
     where the key set is at position <span class="help_highlightText">0</span> and the values set at position <span class="help_highlightText">1</span>.
     `
@@ -92,7 +92,7 @@ module.exports = {
     section: "Sequences",
 
     subtitle(data, presets) {
-        return `Store ${presets.getVariableText(data.storage, data.varName)} as List`;
+        return /* html */ `Store ${presets.getVariableText(data.storage, data.varName)} as List`;
     },
 
     variableStorage(data, varType) {
@@ -113,7 +113,7 @@ module.exports = {
     fields: ["storage", "varName", "operation", "restore", "size", "predicate", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>

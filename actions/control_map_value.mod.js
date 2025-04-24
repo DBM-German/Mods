@@ -25,7 +25,7 @@ module.exports = {
                 break;
         }
 
-        return `${presets.getVariableText(data.storage, data.varName)} [${change}]`;
+        return /* html */ `${presets.getVariableText(data.storage, data.varName)} [${change}]`;
     },
 
     meta: {
@@ -39,7 +39,7 @@ module.exports = {
     fields: ["storage", "varName", "key", "controlType", "value"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Map" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br>

@@ -8,7 +8,7 @@ module.exports = {
     section: "Lists and Loops",
 
     subtitle(data, presets) {
-        return `Store ${presets.getVariableText(data.storage, data.varName)} as Set`;
+        return /* html */ `Store ${presets.getVariableText(data.storage, data.varName)} as Set`;
     },
 
     variableStorage(data, varType) {
@@ -28,7 +28,7 @@ module.exports = {
     fields: ["storage", "varName", "storage2", "varName2"],
 
     html(isEvent, data) {
-        return `
+        return /* html */ `
         <div>
             <div style="float: left; width: 35%;">
                 <span class="dbminputlabel">Source List</span><br>

@@ -25,10 +25,10 @@ const OPERATION_FIELD_CONTAINER_MAPPINGS = {
 
 /** @type {Record<keyof typeof OPERATIONS, string> }} */
 const OPERATION_HELP_TEXTS = {
-    average: `
+    average: /* html */ `
     Stores the average of all numbers in the sequence or <span class="help_highlightText">NaN</span> if the sequence is empty.
     `,
-    averageBy: `
+    averageBy: /* html */ `
     Stores the average of all numbers specified by the given <span class="help_highlightText">Selector Function</span> or <span class="help_highlightText">NaN</span> if the sequence is empty.
     <br><br>
     <b>Options</b>
@@ -55,7 +55,7 @@ const OPERATION_HELP_TEXTS = {
         </table>
     </div>
     `,
-    averageByData: `
+    averageByData: /* html */ `
     Stores the average of all numbers associated to the given <span class="help_highlightText">Data Name</span> or <span class="help_highlightText">NaN</span> if the sequence is empty.
     <br><br>
     <b>Options</b>
@@ -89,7 +89,7 @@ module.exports = {
     section: "Sequences",
 
     subtitle(data, presets) {
-        return `Calculate the Average of Numbers in ${presets.getVariableText(data.storage, data.varName)}`;
+        return /* html */ `Calculate the Average of Numbers in ${presets.getVariableText(data.storage, data.varName)}`;
     },
 
     variableStorage(data, varType) {
@@ -110,7 +110,7 @@ module.exports = {
     fields: ["storage", "varName", "operation", "restore", "selector", "dataName", "dataDefaultVal", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Sequence" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br><br>

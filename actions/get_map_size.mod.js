@@ -8,7 +8,7 @@ module.exports = {
     section: "Maps and Sets",
 
     subtitle(data, presets) {
-        return `Get ${presets.getVariableText(data.storage, data.varName)} Size`;
+        return /* html */ `Get ${presets.getVariableText(data.storage, data.varName)} Size`;
     },
 
     variableStorage(data, varType) {
@@ -28,7 +28,7 @@ module.exports = {
     fields: ["storage", "varName", "storage2", "varName2"],
 
     html(_isEvent, _data) {
-        return `
+        return /* html */ `
         <retrieve-from-variable dropdownLabel="Source Map" selectId="storage" variableContainerId="varNameContainer" variableInputId="varName"></retrieve-from-variable>
 
         <br><br><br>
