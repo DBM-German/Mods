@@ -10,6 +10,9 @@ lerna-debug.log*
 # Distribution directory
 dist/
 
+# Local artifacts directory (for use with Act Runner / GitHub Local Actions)
+.artifacts/
+
 # Dependency directories
 node_modules/
 jspm_packages/
