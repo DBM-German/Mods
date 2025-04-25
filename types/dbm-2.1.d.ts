@@ -1,4 +1,4 @@
-import type { DBMActionsCache, DBMVarType } from "dbm-types/dbm-2.1";
+import type { DBMAction, DBMActionsCache, DBMExtensionJSON, DBMSettingsJSON, DBMVarType } from "dbm-types/dbm-2.1";
 
 export type * from "dbm-types/dbm-2.1";
 
@@ -7,24 +7,63 @@ declare module "dbm-types/dbm-2.1" {
         Mods: DBMModsAPI;
     }
 
-    export interface DBMModsAPI {
+    export interface NPMDependenciesInfo {
+        dependencies: {
+            [package: string]: {
+                name: string;
+                description?: string;
+                version: string;
+                resolved?: string;
+                overridden?: boolean;
+                [x: string]: any;
+            };
+        };
+    }
+
+    export interface DBMActionMetadata {
+        dependencies?: string[];
+    }
+
+    export interface DBMModsAPISettingsJSON extends DBMExtensionJSON {
+        enableNodePath: string;
+        nodePath: string;
+        enableNpmPath: string;
+        npmPath: string;
+    }
+
+    export interface DBMModsAPIHelpers {
         /**
-         * Install one or more node modules if necessary
-         * @param packageSpec Package specifications (preferrably with a version or tag)
-         * @throws {Error} NPM command failed
-         * @example
-         * mod(DBM) {
-         *     DBM.Mods.install("node-fetch@3.3");
-         * }
+         * Get the current working directory
+         * @returns Current working directory
          */
-        install(...packageSpec: string[]): void;
+        cwd(): Promise<string>;
 
         /**
-         * Check whether one or more node module are installed
-         * @param packageSpec Package specifications (preferrably with a version or tag)
-         * @throws {Error} NPM command failed
+         * Get the project settings
+         * @returns Project settings
          */
-        isInstalled<T extends string[]>(...packageSpec: T): Record<T[number], boolean>;
+        getSettings(): Promise<DBMSettingsJSON>;
+
+        /**
+         * Get the mods API settings
+         * @returns Mods API settings
+         */
+        getAPISettings(): Promise<DBMModsAPISettingsJSON>;
+
+        /**
+         * Get NPM dependencies info
+         * @returns Dependencies info
+         */
+        getDependenciesInfo(): Promise<NPMDependenciesInfo>;
+
+        /**
+         * (Re-)Install one or more node modules
+         * @param packageSpecs Package specifications (preferrably with a version or tag)
+         * @throws {Error} NPM command failed
+         * @example
+         * await helpers.install("node-fetch@3.3"); // Always attempts to install the package
+         */
+        install(packageSpecs: string[]): Promise<void>;
 
         /**
          * Run NPM command
@@ -34,8 +73,48 @@ declare module "dbm-types/dbm-2.1" {
          * @returns String or JSON
          * @throws {Error} NPM command failed
          */
-        callNPM<optJSON extends boolean>(command: string, args?: readonly string[], opts?: { json?: optJSON, long?: boolean }): optJSON extends true ? any : string;
+        callNPM<optJSON extends boolean>(command: string, args?: readonly string[], opts?: { json?: optJSON, long?: boolean }): Promise<optJSON extends true ? any : string>;
+    }
 
+    export interface DBMSharedModsAPI {
+        /**
+         * Get the current working directory
+         * @returns Current working directory
+         */
+        cwd(): Promise<string>;
+
+        /**
+         * Get the project settings
+         * @returns Project settings
+         */
+        getSettings(): Promise<DBMSettingsJSON>;
+
+        /**
+         * Get the mods API settings
+         * @returns Mods API settings
+         */
+        getAPISettings(): Promise<DBMModsAPISettingsJSON>;
+
+        /**
+         * Install one or more node modules if necessary
+         * @param packageSpecs Package specifications (preferrably with a version or tag)
+         * @throws {Error} NPM command failed
+         * @example
+         * await DBM.Mods.install("node-fetch@3.3"); // Only attempts to install the package if it is not already installed
+         */
+        install(...packageSpecs: string[]): Promise<void>;
+
+        /**
+         * Check whether one or more node module are installed
+         * @param packageSpec Package specifications (preferrably with a version or tag)
+         * @throws {Error} NPM command failed
+         */
+        isInstalled<T extends string[]>(...packageSpec: T): Promise<Record<T[number], boolean>>;
+
+        _dependencyInfoCache: NPMDependenciesInfo | null;
+    }
+
+    export interface DBMModsAPI extends DBMSharedModsAPI {
         /**
          * Eval function with additional features
          * @param content Code to evaluate
@@ -54,23 +133,31 @@ declare module "dbm-types/dbm-2.1" {
         assertArrayInput<T = any>(input: unknown, storage: DBMVarType, varName: string): asserts input is T[];
 
         _varTypes: Record<DBMVarType, string>;
-        _dependencyInfoCache: NPMDependenciesInfo | null;
     }
 
-    export interface NPMDependenciesInfo {
-        dependencies: {
-            [package: string]: {
-                name: string;
-                description: string;
-                version: string;
-                resolved: string;
-                overridden: boolean;
-                [x: string]: any;
-            };
-        };
+    export interface DBMEditorModsAPI extends DBMSharedModsAPI {
     }
 
-    export interface DBMActionMetadata {
-        dependencies?: string[];
+    export interface DBMModsAPIAction extends DBMAction {
+        /**
+         * Create shared mods API
+         * @param helpers Helper methods for the mods API
+         * @returns Shared mods API
+         */
+        getSharedAPI(helpers: DBMModsAPIHelpers): DBMSharedModsAPI;
+
+        /**
+         * Create mods API for the DBM bot
+         * @param DBM DBM interface
+         * @returns Mods API
+         */
+        getBotAPI(DBM: DBM): DBMModsAPI;
+
+        /**
+         * Create mods API for the DBM editor
+         * @param window DBM editor shared window
+         * @returns Editor mods API
+         */
+        getEditorAPI(window: Window): DBMEditorModsAPI;
     }
 }

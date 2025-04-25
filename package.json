@@ -22,19 +22,23 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "build": "node esbuild.mjs"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^2.7.2",
     "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "dbm-types": "^0.3.0",
+    "dbm-types": "git://github.com/DBM-German/Types.git#c4713ed6d18c7503a7d8d58ffce21a079e7e1916",
+    "esbuild": "^0.25.2",
+    "esbuild-plugin-inline-worker": "^0.1.1",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-markdownlint": "^0.6.0",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.6.0",
+    "monaco-editor": "^0.52.2",
     "typescript": "^5.5.4"
   },
   "optionalDependencies": {

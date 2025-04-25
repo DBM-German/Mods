@@ -14,9 +14,6 @@ dist/
 node_modules/
 jspm_packages/
 
-# Dependency files
-package-lock.json
-
 # TypeScript cache
 *.tsbuildinfo
 
