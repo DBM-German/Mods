@@ -194,8 +194,8 @@ module.exports = {
             },
             async callNPM(command, args, opts) { // TODO Redundant
                 const apiSettings = await this.getAPISettings();
-                const nodeDir = apiSettings.enableNodePath ? normalize(apiSettings.nodePath) : "node";
-                const npmDir = apiSettings.enableNpmPath ? normalize(apiSettings.npmPath) : "npm";
+                const nodeDir = apiSettings?.enableNodePath === "true" ? normalize(apiSettings.nodePath) : "node";
+                const npmDir = apiSettings?.enableNpmPath === "true" ? normalize(apiSettings.npmPath) : "npm";
 
                 const spawnArgs = [
                     command,
@@ -330,8 +330,8 @@ module.exports = {
                 const apiSettings = await this.getAPISettings();
                 /** @type {string} */
                 const dbmDir = await execInMainElectronWindow("DBM.mainLoc");
-                const nodeDir = apiSettings.enableNodePath ? normalize(apiSettings.nodePath) : join(dbmDir, "resources", "app", "nodejs");
-                const npmDir = apiSettings.enableNpmPath ? normalize(apiSettings.npmPath) : join(dbmDir, "resources", "app", "nodejs", "node_modules", "npm", "bin");
+                const nodeDir = apiSettings?.enableNodePath === "true" ? normalize(apiSettings.nodePath) : join(dbmDir, "resources", "app", "nodejs");
+                const npmDir = apiSettings?.enableNpmPath === "true" ? normalize(apiSettings.npmPath) : join(dbmDir, "resources", "app", "nodejs", "node_modules", "npm", "bin");
 
                 const spawnArgs = [
                     command,

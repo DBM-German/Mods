@@ -47,8 +47,8 @@ module.exports = {
             <div style="width: 35%">
                 <span class="dbminputlabel">Custom Node.js Path</span><br>
                 <select id="enableNodePath" class="round" onchange="glob.onEnableNodePathChanged(this)">
-                    <option value="true" ${data.enableNodePath ? "selected" : ""}>Enable</option>
-                    <option value="false" ${data.enableNodePath ? "" : "selected"}>Disable</option>
+                    <option value="true" ${data.enableNodePath === "true" ? "selected" : ""}>Enable</option>
+                    <option value="false" ${data.enableNodePath === "true" ? "" : "selected"}>Disable</option>
                 </select>
             </div>
             <br>
@@ -60,8 +60,8 @@ module.exports = {
             <div style="width: 35%">
                 <span class="dbminputlabel">Custom NPM Path</span><br>
                 <select id="enableNpmPath" class="round" onchange="glob.onEnableNpmPathChanged(this)">
-                    <option value="true" ${data.enableNpmPath ? "selected" : ""}>Enable</option>
-                    <option value="false" ${data.enableNpmPath ? "" : "selected"}>Disable</option>
+                    <option value="true" ${data.enableNpmPath === "true" ? "selected" : ""}>Enable</option>
+                    <option value="false" ${data.enableNpmPath === "true" ? "" : "selected"}>Disable</option>
                 </select>
             </div>
             <br>

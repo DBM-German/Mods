@@ -48,8 +48,8 @@ module.exports = {
         <div style="padding: 8px">
             <div style="width: 35%">
                 <select id="enable" class="round" onchange="glob.onEnableChanged(this)">
-                    <option value="true" ${data.enable ? "selected" : ""}>Enable</option>
-                    <option value="false" ${data.enable ? "" : "selected"}>Disable</option>
+                    <option value="true" ${data.enable === "true" ? "selected" : ""}>Enable</option>
+                    <option value="false" ${data.enable === "true" ? "" : "selected"}>Disable</option>
                 </select>
             </div>
             <br>
