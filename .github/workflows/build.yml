@@ -13,17 +13,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
-      - name: Build
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build mods
+        run: node esbuild.mjs
+
+      - name: Prepare artifact
         run: |
-          npm i
-          node esbuild.mjs
+          mkdir -p artifact
+          cp -r dist/actions artifact/
+          cp -r dist/events artifact/
+          cp -r dist/extensions artifact/
+          cp -r translations artifact/
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: mods
-          path: dist
+          path: artifact

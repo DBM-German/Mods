@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build mods
+        run: node esbuild.mjs
+
+      - name: Create release archive
+        run: |
+          mkdir -p release
+          cp -r dist/actions release/
+          cp -r dist/events release/
+          cp -r dist/extensions release/
+          cp -r translations release/
+          cd release
+          zip -r ../DBM-German-Mods.zip .
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: DBM-German-Mods.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          name: DBM Mods v${{ steps.version.outputs.VERSION }}
