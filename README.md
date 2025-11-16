@@ -43,8 +43,8 @@ not available in the base version.
 5. Restart Discord Bot Maker if it's currently running
 6. The new mods should now appear in your action and extension lists
 
-> [!WARNING] Do not download files directly from the repository
-> They need to be processed through a build pipeline first.
+> [!WARNING]
+> Do not download files directly from the repository. They need to be processed through a build pipeline first.
 > Always use the [latest release][Latest-Release].
 
 ## DE | Was sind diese Mods?
@@ -82,8 +82,8 @@ Actions und Extensions, die in der Basisversion nicht verfügbar sind.
 5. Starte Discord Bot Maker neu, falls es gerade läuft
 6. Die neuen Mods sollten nun in deinen Action- und Extension-Listen erscheinen
 
-> [!WARNING] Lade keine Dateien direkt aus dem Repository herunter.
-> Diese müssen erst durch eine Build-Pipeline verarbeitet werden.
+> [!WARNING]
+> Lade keine Dateien direkt aus dem Repository herunter. Diese müssen erst durch eine Build-Pipeline verarbeitet werden.
 > Verwende immer den [aktuellen Release][Latest-Release].
 
 ## EN | Development
