@@ -31,6 +31,15 @@ declare module "dbm-types/dbm-2.1" {
         npmPath: string;
     }
 
+    export interface DBMEnvSettingsProviderExtensionJSON extends DBMExtensionJSON {
+        enable: `true` | `false` | string & {};
+        token: string;
+        client: string;
+        ownerId: string;
+        slashType: string;
+        slashServers: string;
+    }
+
     export interface DBMModsAPIHelpers {
         /**
          * Get the current working directory
@@ -48,7 +57,7 @@ declare module "dbm-types/dbm-2.1" {
          * Get the mods API settings
          * @returns Mods API settings
          */
-        getAPISettings(): Promise<DBMModsAPISettingsJSON>;
+        getAPISettings(): Promise<DBMModsAPISettingsJSON | undefined>;
 
         /**
          * Get NPM dependencies info
@@ -93,7 +102,7 @@ declare module "dbm-types/dbm-2.1" {
          * Get the mods API settings
          * @returns Mods API settings
          */
-        getAPISettings(): Promise<DBMModsAPISettingsJSON>;
+        getAPISettings(): Promise<DBMModsAPISettingsJSON | undefined>;
 
         /**
          * Install one or more node modules if necessary
