@@ -1,5 +1,5 @@
 /** @typedef {import("../types/dbm-2.1").DBMExtension} DBMExtension */
-/** @typedef {import("../types/dbm-2.1").DBMExtensionJSON} DBMExtensionJSON */
+/** @typedef {import("../types/dbm-2.1").DBMEnvSettingsProviderExtensionJSON} DBMEnvSettingsProviderExtensionJSON */
 
 /** @type {DBMExtension} */
 module.exports = {
@@ -128,10 +128,10 @@ module.exports = {
         DBM.Bot.init = function() {
             const settings = DBM.Files?.data.settings;
             const extData = settings?.[extName];
-            /** @type {DBMExtensionJSON} */
+            /** @type {DBMEnvSettingsProviderExtensionJSON | undefined} */
             const customData = extData?.customData?.[extName];
 
-            if (customData.enable === "true") {
+            if (customData?.enable === "true") {
                 for (const field of fields) {
                     const envVarName = customData[field];
                     const envVarValue = process.env[envVarName];
