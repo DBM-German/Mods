@@ -184,7 +184,7 @@ module.exports = {
                 console.log("Attempting to install:", readablePackagesSpecs);
 
                 try {
-                    await this.callNPM("install", ["--save", ...packageSpecs]);
+                    await this.callNPM("install", ["--save-prod", ...packageSpecs]);
                     console.log("Successfully installed:", readablePackagesSpecs);
                 } catch (e) {
                     console.error("Failed to install:", readablePackagesSpecs);
